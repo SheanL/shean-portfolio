@@ -311,6 +311,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			}
 			.tag-pills-wrapper {
 				position: relative;
+				display: flex;
+				align-items: center;
 			}
 			.beyond-slider-arrow {
 				display: none;
@@ -410,13 +412,15 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 					display: none;
 				}
 				.tag-pills {
+					flex: 1;
+					min-width: 0;
 					flex-wrap: nowrap;
 					justify-content: flex-start;
 					overflow-x: auto;
 					scroll-snap-type: x proximity;
 					scrollbar-width: none;
-					padding: 0.2rem 2.25rem 0.6rem 0.25rem;
-					margin-right: -0.25rem;
+					padding: 0.2rem 0.25rem 0.6rem;
+					margin-right: 0;
 				}
 				.tag-pills::-webkit-scrollbar {
 					display: none;
@@ -427,12 +431,10 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				}
 				.beyond-slider-arrow {
 					display: block;
-					position: absolute;
-					top: 50%;
-					right: -1.25rem;
-					z-index: 1;
-					transform: translateY(-50%);
-					padding: 0.2rem 0;
+					position: static;
+					flex: 0 0 auto;
+					transform: none;
+					padding: 0 0.15rem 0.25rem;
 					color: var(--accent);
 					font-size: 1.15rem;
 					line-height: 1;
