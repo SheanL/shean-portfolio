@@ -7,7 +7,7 @@ export default function SoftSkills() {
     { nameEn: 'Team Collaboration', nameNl: 'Samenwerking & Extraversie', icon: '🤝' },
     { nameEn: 'Conscientiousness & Detail', nameNl: 'Nauwkeurigheid & Eigenaarschap', icon: '🎯' },
     { nameEn: 'Altruism & Empathy', nameNl: 'Behulpzaamheid & Empathie', icon: '❤️' },
-    { nameEn: 'Resilience & Perseverance', nameNl: 'Veerkracht & Doorzettingsvermogen', icon: '🛡️' },
+    { nameEn: 'Analytical Thinking', nameNl: 'Analytisch Denken', icon: '🧠' },
     { nameEn: 'Time & Task Management', nameNl: 'Tijd- en Taakbeheer', icon: '⏱️' },
   ];
 

@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function SkillMarquee() {
+  const [selectedSkill, setSelectedSkill] = useState(null);
+
   const skills = [
     { name: 'C#', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg' },
     { name: '.NET / .NET Core', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dotnetcore/dotnetcore-original.svg' },
@@ -56,6 +58,10 @@ export default function SkillMarquee() {
           margin: 0 2rem;
           transition: transform 0.3s ease;
           cursor: pointer;
+          position: relative;
+          border: 0;
+          padding: 0;
+          background: transparent;
         }
 
         .marquee-item img {
@@ -69,6 +75,28 @@ export default function SkillMarquee() {
         .marquee-item:hover img {
           filter: grayscale(0%) opacity(1);
           transform: scale(1.25);
+        }
+
+        .marquee-item-label {
+          position: absolute;
+          top: calc(100% + 0.7rem);
+          left: 50%;
+          transform: translateX(-50%);
+          width: max-content;
+          max-width: 140px;
+          color: inherit;
+          font-size: 0.8rem;
+          line-height: 1.2;
+          text-align: center;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.2s ease;
+        }
+
+        .marquee-item:hover .marquee-item-label,
+        .marquee-item:focus-visible .marquee-item-label,
+        .marquee-item.selected .marquee-item-label {
+          opacity: 1;
         }
 
         /* Dark Mode: rust = helder lichtgrijs/zilver; hover = volledige originele merk-kleuren */
@@ -121,9 +149,17 @@ export default function SkillMarquee() {
       
       <div className="marquee-content">
         {marqueeItems.map((skill, index) => (
-          <div key={index} className={`marquee-item ${skill.invertDark ? 'invert-dark' : ''} ${skill.isMonochrome ? 'is-monochrome' : ''}`} title={skill.name}>
+          <button
+            key={index}
+            type="button"
+            className={`marquee-item ${selectedSkill === index ? 'selected' : ''} ${skill.invertDark ? 'invert-dark' : ''} ${skill.isMonochrome ? 'is-monochrome' : ''}`}
+            title={skill.name}
+            aria-label={skill.name}
+            onClick={() => setSelectedSkill(selectedSkill === index ? null : index)}
+          >
             <img src={skill.img} alt={skill.name} />
-          </div>
+            <span className="marquee-item-label" aria-hidden="true">{skill.name}</span>
+          </button>
         ))}
       </div>
     </div>
