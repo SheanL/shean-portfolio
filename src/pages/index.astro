@@ -634,64 +634,60 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		<Footer />
 
 		<script>
-			const pills = document.querySelectorAll<HTMLButtonElement>('.tag-pill');
-			const cards = document.querySelectorAll<HTMLDivElement>('.personal-card');
-			const grid = document.getElementById('personal-cards-grid');
-			const container = document.getElementById('beyond-pills-container');
-			let activeCategory = 'fitness';
+			function initializeHomePage() {
+				const page = document.querySelector('.beyond-code-section');
+				if (!page || page.hasAttribute('data-interactions-ready')) return;
+				page.setAttribute('data-interactions-ready', '');
 
-			function applyCategory(cat: string) {
-				pills.forEach((p) => {
-					if (p.dataset.category === cat) {
-						p.classList.add('active');
-					} else {
-						p.classList.remove('active');
-					}
+				const pills = page.querySelectorAll<HTMLButtonElement>('.tag-pill');
+				const cards = page.querySelectorAll<HTMLDivElement>('.personal-card');
+				const container = page.querySelector<HTMLElement>('#beyond-pills-container');
+				let activeCategory = 'fitness';
+
+				function applyCategory(cat: string) {
+					pills.forEach((pill) => {
+						pill.classList.toggle('active', pill.dataset.category === cat);
+					});
+
+					cards.forEach((card) => {
+						const isActive = card.dataset.category === cat;
+						card.style.display = isActive ? 'block' : 'none';
+						card.style.opacity = isActive ? '1' : '0';
+					});
+				}
+
+				pills.forEach((pill) => {
+					pill.addEventListener('click', () => {
+						activeCategory = pill.dataset.category || 'fitness';
+						applyCategory(activeCategory);
+					});
+
+					pill.addEventListener('mouseenter', () => {
+						applyCategory(pill.dataset.category || 'fitness');
+					});
 				});
 
-				cards.forEach((c) => {
-					if (c.dataset.category === cat) {
-						c.style.display = 'block';
-						c.style.opacity = '1';
-					} else {
-						c.style.display = 'none';
-						c.style.opacity = '0';
-					}
-				});
-			}
-
-			pills.forEach((pill) => {
-				pill.addEventListener('click', () => {
-					activeCategory = pill.dataset.category || 'fitness';
+				container?.addEventListener('mouseleave', () => {
 					applyCategory(activeCategory);
 				});
 
-				pill.addEventListener('mouseenter', () => {
-					const hoverCat = pill.dataset.category || 'fitness';
-					applyCategory(hoverCat);
-				});
-			});
+				page.closest('main')?.querySelectorAll<HTMLButtonElement>('.col-header').forEach((header) => {
+					header.addEventListener('click', () => {
+						const panelId = header.getAttribute('aria-controls');
+						const panel = panelId ? document.getElementById(panelId) : null;
+						if (!panel) return;
 
-			if (container) {
-				container.addEventListener('mouseleave', () => {
-					applyCategory(activeCategory);
+						const isOpen = header.getAttribute('aria-expanded') === 'true';
+						header.setAttribute('aria-expanded', String(!isOpen));
+						panel.classList.toggle('is-open', !isOpen);
+					});
 				});
+
+				applyCategory(activeCategory);
 			}
 
-			document.querySelectorAll<HTMLButtonElement>('.col-header').forEach((header) => {
-				header.addEventListener('click', () => {
-					const panelId = header.getAttribute('aria-controls');
-					const panel = panelId ? document.getElementById(panelId) : null;
-					if (!panel) return;
-
-					const isOpen = header.getAttribute('aria-expanded') === 'true';
-					header.setAttribute('aria-expanded', String(!isOpen));
-					panel.classList.toggle('is-open', !isOpen);
-				});
-			});
-
-			// Initialize default view
-			applyCategory('fitness');
+			document.addEventListener('astro:page-load', initializeHomePage);
+			initializeHomePage();
 		</script>
 	</body>
 </html>
