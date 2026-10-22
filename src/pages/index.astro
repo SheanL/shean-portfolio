@@ -1,0 +1,697 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import SkillMarquee from '../components/SkillMarquee.jsx';
+import SoftSkills from '../components/SoftSkills.jsx';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			.hero-container {
+				min-height: calc(100vh - 200px); /* Neemt de hele hoogte in minus de header/footer */
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+				padding: 2rem 1rem;
+			}
+			.hero-content {
+				max-width: 800px;
+				animation: fadeIn 1s ease-out forwards;
+			}
+			.hero-title {
+				font-size: var(--font-size-3xl);
+				line-height: 1.15;
+				margin-bottom: var(--space-sm);
+				font-weight: 400;
+				letter-spacing: 0.01em;
+				font-family: var(--font-display);
+			}
+			.gradient-text {
+				background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 50%, #06b6d4 100%);
+				color: transparent;
+				-webkit-background-clip: text;
+				background-clip: text;
+			}
+			:global(.dark) .gradient-text {
+				background: linear-gradient(135deg, #60a5fa 0%, #818cf8 50%, #38bdf8 100%);
+				color: transparent;
+				-webkit-background-clip: text;
+				background-clip: text;
+			}
+			.hero-subtitle {
+				font-size: var(--font-size-md);
+				color: var(--gray);
+				margin-bottom: var(--space-sm);
+				line-height: 1.6;
+			}
+			.hero-bio {
+				font-size: var(--font-size-base);
+				color: var(--gray);
+				line-height: 1.7;
+				max-width: 720px;
+				margin: 0 auto var(--space-lg) auto;
+			}
+			.link-inline {
+				color: var(--accent);
+				text-decoration: underline;
+				text-underline-offset: 3px;
+			}
+			.profile-avatar-wrapper {
+				margin-bottom: var(--space-md);
+				display: flex;
+				justify-content: center;
+			}
+			.profile-avatar {
+				width: clamp(145px, 22vw, 180px);
+				height: clamp(145px, 22vw, 180px);
+				object-fit: cover;
+				object-position: center 20%;
+				border-radius: 50%;
+				border: 3px solid rgba(255, 255, 255, 0.25);
+				box-shadow: 0 8px 30px rgba(89, 106, 255, 0.4);
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+				display: block;
+			}
+			.profile-avatar:hover {
+				transform: scale(1.08);
+				box-shadow: 0 10px 35px rgba(89, 106, 255, 0.65);
+			}
+
+			.hero-location {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				padding: 0.4rem 0.95rem;
+				border-radius: 50px;
+				background: rgba(140, 140, 140, 0.08);
+				border: 1px solid rgba(140, 140, 140, 0.2);
+				font-size: var(--font-size-xs);
+				color: var(--gray);
+				margin-bottom: var(--space-md);
+				font-weight: 500;
+			}
+			.hero-status-row {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 0.6rem;
+				margin-bottom: var(--space-md);
+			}
+			.hero-status-row .hero-location {
+				margin-bottom: 0;
+			}
+			.hero-availability .location-dot {
+				background: var(--accent);
+				box-shadow: 0 0 8px var(--accent);
+			}
+			:global(.dark) .hero-location {
+				background: rgba(255, 255, 255, 0.04);
+				border-color: rgba(255, 255, 255, 0.12);
+				color: #cbd5e1;
+			}
+			.location-dot {
+				width: 8px;
+				height: 8px;
+				border-radius: 50%;
+				background: #22c55e;
+				box-shadow: 0 0 8px #22c55e;
+				display: inline-block;
+				flex-shrink: 0;
+			}
+
+			.tech-stack-section {
+				max-width: 960px;
+				margin: 0 auto var(--space-2xl) auto;
+				padding: 0 var(--space-md);
+				text-align: center;
+			}
+			.section-heading {
+				font-size: var(--font-size-xl);
+				font-weight: 700;
+				margin-bottom: var(--space-md);
+				letter-spacing: -0.02em;
+				text-align: center;
+			}
+			.skills-languages-section {
+				max-width: 900px;
+				margin: 0 auto var(--space-2xl) auto;
+				padding: 0 var(--space-md);
+			}
+			.skills-languages-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 2.5rem;
+				align-items: start;
+			}
+			@media (max-width: 720px) {
+				.skills-languages-grid {
+					grid-template-columns: 1fr;
+					gap: 2rem;
+				}
+			}
+			.col-header {
+				display: flex;
+				align-items: center;
+				gap: 0.6rem;
+				width: 100%;
+				padding: 0.2rem 0;
+				margin: 0;
+				border: 0;
+				background: transparent;
+				color: inherit;
+				text-align: left;
+				cursor: pointer;
+			}
+			.col-header:hover .col-title {
+				color: var(--accent);
+			}
+			.col-header:focus-visible {
+				outline: 2px solid var(--accent);
+				outline-offset: 4px;
+				border-radius: 4px;
+			}
+			.col-header-content {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				min-width: 0;
+				flex: 0 1 auto;
+			}
+			.col-title {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				font-size: 1rem;
+				font-weight: 700;
+				color: rgb(var(--black));
+				margin: 0;
+				min-width: 0;
+			}
+			:global(.dark) .col-title {
+				color: #ffffff;
+			}
+			.col-count {
+				font-size: 0.75rem;
+				font-weight: 700;
+				padding: 0.15rem 0.5rem;
+				border-radius: 20px;
+				background: rgba(140, 140, 140, 0.12);
+				color: var(--gray);
+			}
+			.col-arrow {
+				font-size: 0.8rem;
+				color: var(--gray);
+				transition: transform 0.25s ease, color 0.2s ease;
+			}
+			.col-header[aria-expanded="true"] .col-arrow {
+				transform: rotate(180deg);
+				color: var(--accent);
+			}
+			.skills-panel-content {
+				display: none;
+				margin-top: 0.6rem;
+			}
+			.skills-panel-content.is-open {
+				display: block;
+			}
+			:global(.dark) .col-count {
+				background: rgba(255, 255, 255, 0.08);
+				color: #94a3b8;
+			}
+			.languages-list {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: flex;
+				flex-direction: column;
+				gap: 0.35rem;
+			}
+			.language-item {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0.35rem 0.5rem;
+				background: transparent;
+				border: none;
+				border-radius: 6px;
+				font-size: 0.92rem;
+				color: rgb(var(--gray-dark));
+				transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
+				cursor: default;
+			}
+			.language-item:hover {
+				color: var(--accent);
+				transform: translateX(6px) scale(1.02);
+			}
+			:global(.dark) .language-item {
+				color: #cbd5e1;
+			}
+			:global(.dark) .language-item:hover {
+				color: #93c5fd;
+			}
+			.lang-left {
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+			}
+			.lang-flag {
+				font-size: 1.25rem;
+				line-height: 1;
+				transition: transform 0.2s ease;
+			}
+			.language-item:hover .lang-flag {
+				transform: scale(1.25);
+			}
+			.lang-badge {
+				font-size: 0.75rem;
+				font-weight: 600;
+				color: var(--accent);
+				background: rgba(89, 106, 255, 0.1);
+				padding: 0.15rem 0.55rem;
+				border-radius: 20px;
+				transition: background 0.2s ease, color 0.2s ease;
+			}
+			:global(.dark) .lang-badge {
+				background: rgba(89, 106, 255, 0.2);
+				color: #93c5fd;
+			}
+			.language-item:hover .lang-badge {
+				background: var(--accent);
+				color: #ffffff;
+			}
+
+			@keyframes gradientMove {
+				0% { background-position: 0% 50%; }
+				50% { background-position: 100% 50%; }
+				100% { background-position: 0% 50%; }
+			}
+			@keyframes fadeIn {
+				from { opacity: 0; transform: translateY(30px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+			.beyond-code-section {
+				max-width: 900px;
+				margin: 0 auto var(--space-3xl) auto;
+				padding: 0 var(--space-md);
+				text-align: center;
+			}
+			.tag-pills {
+				display: flex;
+				flex-wrap: wrap;
+				gap: var(--space-xs);
+				justify-content: center;
+				margin: var(--space-md) 0 var(--space-lg) 0;
+			}
+			.tag-pill {
+				background: transparent;
+				color: var(--gray);
+				border: 1px solid rgba(125, 125, 125, 0.2);
+				padding: 0.5rem 1.25rem;
+				border-radius: 50px;
+				font-size: var(--font-size-xs);
+				font-weight: 600;
+				opacity: 0.45;
+				cursor: pointer;
+				transition: all 0.2s ease;
+				outline: none;
+				font-family: inherit;
+				box-shadow: none;
+			}
+			:global(.dark) .tag-pill {
+				background: transparent;
+				border-color: rgba(255, 255, 255, 0.12);
+				color: rgba(255, 255, 255, 0.45);
+			}
+			.tag-pill:hover, .tag-pill.active {
+				opacity: 1;
+				color: var(--accent);
+				border-color: rgba(125, 125, 125, 0.35);
+				background: rgba(125, 125, 125, 0.05);
+				font-weight: 700;
+				transform: translateY(-1px);
+				box-shadow: none;
+			}
+			:global(.dark) .tag-pill:hover, :global(.dark) .tag-pill.active {
+				color: var(--accent);
+				border-color: rgba(255, 255, 255, 0.25);
+				background: rgba(255, 255, 255, 0.05);
+				box-shadow: none;
+			}
+			.personal-cards-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+				gap: var(--space-md);
+				text-align: left;
+				transition: all 0.3s ease;
+			}
+			.personal-cards-grid.single-card {
+				display: flex;
+				justify-content: center;
+			}
+			.personal-cards-grid.single-card .personal-card {
+				max-width: 550px;
+				width: 100%;
+			}
+			.personal-card {
+				background: rgba(var(--gray-light), 0.3);
+				border: 1px solid rgba(var(--gray-light), 0.8);
+				border-radius: 16px;
+				padding: var(--space-md);
+				transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+			}
+			:global(.dark) .personal-card {
+				background: rgba(255, 255, 255, 0.03);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+			}
+			.personal-card:hover {
+				transform: translateY(-4px);
+				border-color: var(--accent);
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+			}
+			.personal-card-header {
+				display: flex;
+				align-items: center;
+				gap: var(--space-xs);
+				margin-bottom: var(--space-xs);
+			}
+			.personal-card-icon {
+				font-size: 1.8rem;
+				line-height: 1;
+			}
+			.personal-card-title {
+				font-size: var(--font-size-lg);
+				font-weight: 700;
+				margin: 0;
+			}
+			.personal-card-desc {
+				font-size: var(--font-size-base);
+				color: var(--gray);
+				line-height: 1.6;
+				margin: 0;
+			}
+			@media (max-width: 600px) {
+				.personal-cards-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="hero-container">
+				<div class="hero-content">
+					<div class="profile-avatar-wrapper">
+						<img src="/profile.jpg" alt="Shean Looghe" class="profile-avatar" />
+					</div>
+					<div class="hero-status-row">
+						<div class="hero-location">
+							<span class="location-dot"></span>
+							<span class="lang-en">Ghent Area (On-site & Hybrid)</span>
+							<span class="lang-nl">Regio Gent (op locatie & hybride)</span>
+						</div>
+						<div class="hero-location hero-availability">
+							<span class="lang-en">Open for Full-Stack internship &amp; junior roles</span>
+							<span class="lang-nl">Open voor Full-Stack stage &amp; junior functies</span>
+						</div>
+					</div>
+					<h1 class="hero-title">
+						<span class="gradient-text">Shean Looghe.</span>
+					</h1>
+					<p class="hero-subtitle lang-en">
+						Passionate Full-Stack Software Engineer.<br />
+						Specializing in building modern, minimalist and scalable applications with React, Python, C# (.NET) & Java.
+					</p>
+					<p class="hero-subtitle lang-nl">
+						Gepassioneerde Full-Stack Software Engineer.<br />
+						Gespecialiseerd in het bouwen van moderne, minimalistische en schaalbare applicaties met React, Python, C# (.NET) en Java.
+					</p>
+					<p class="hero-bio lang-en">
+						I study Applied Computer Science at <a href="https://www.hogent.be" target="_blank" rel="noopener noreferrer" class="link-inline">HOGENT</a>. Driven by an open mind to learn and natural curiosity, I embrace new challenges. Communicative, socially engaged and eager to collaborate in teams. Honesty, perseverance and reliability are at the core of my work.
+					</p>
+					<p class="hero-bio lang-nl">
+						Ik studeer Toegepaste Informatica aan <a href="https://www.hogent.be" target="_blank" rel="noopener noreferrer" class="link-inline">HOGENT</a>. Met een open blik en een natuurlijke nieuwsgierigheid ga ik graag nieuwe uitdagingen aan. Ik communiceer duidelijk, ben sociaal betrokken en werk graag samen in teamverband. Eerlijkheid, doorzettingsvermogen en betrouwbaarheid vormen de basis van mijn werk.
+					</p>
+				</div>
+			</section>
+
+			<section class="tech-stack-section">
+				<h2 class="section-heading">
+					<span class="lang-en">Core Tech Stack</span>
+					<span class="lang-nl">Kerntechnologieën</span>
+				</h2>
+				<SkillMarquee client:load />
+			</section>
+
+			<section class="skills-languages-section">
+				<div class="skills-languages-grid">
+					{/* Links: Persoonlijke Vaardigheden */}
+					<div class="skills-col">
+						<button class="col-header" type="button" aria-expanded="false" aria-controls="soft-skills-panel">
+							<span class="col-header-content">
+							<h3 class="col-title">
+								<span>🧠</span>
+								<span class="lang-en">Personal & Soft Skills</span>
+								<span class="lang-nl">Persoonlijke Vaardigheden</span>
+							</h3>
+							</span>
+							<span class="col-count">7</span>
+							<span class="col-arrow" aria-hidden="true">▼</span>
+						</button>
+						<div class="skills-panel-content" id="soft-skills-panel">
+							<SoftSkills client:load />
+						</div>
+					</div>
+
+					{/* Rechts: Talenkennis */}
+					<div class="languages-col">
+						<button class="col-header" type="button" aria-expanded="false" aria-controls="languages-panel">
+							<span class="col-header-content">
+							<h3 class="col-title">
+								<span>🌐</span>
+								<span class="lang-en">Languages</span>
+								<span class="lang-nl">Talenkennis</span>
+							</h3>
+							</span>
+							<span class="col-count">4</span>
+							<span class="col-arrow" aria-hidden="true">▼</span>
+						</button>
+						<div class="skills-panel-content" id="languages-panel">
+							<ul class="languages-list">
+							<li class="language-item">
+								<div class="lang-left">
+									<span class="lang-flag">🇳🇱</span>
+									<strong><span class="lang-en">Dutch</span><span class="lang-nl">Nederlands</span></strong>
+								</div>
+								<span class="lang-badge"><span class="lang-en">Native (C2)</span><span class="lang-nl">Moedertaal (C2)</span></span>
+							</li>
+							<li class="language-item">
+								<div class="lang-left">
+									<span class="lang-flag">🇬🇧</span>
+									<strong><span class="lang-en">English</span><span class="lang-nl">Engels</span></strong>
+								</div>
+								<span class="lang-badge"><span class="lang-en">Fluent (C1)</span><span class="lang-nl">Vloeiend (C1)</span></span>
+							</li>
+							<li class="language-item">
+								<div class="lang-left">
+									<span class="lang-flag">🇪🇸</span>
+									<strong><span class="lang-en">Spanish</span><span class="lang-nl">Spaans</span></strong>
+								</div>
+								<span class="lang-badge"><span class="lang-en">Basic (A2)</span><span class="lang-nl">Basis (A2)</span></span>
+							</li>
+							<li class="language-item">
+								<div class="lang-left">
+									<span class="lang-flag">🇫🇷</span>
+									<strong><span class="lang-en">French</span><span class="lang-nl">Frans</span></strong>
+								</div>
+								<span class="lang-badge"><span class="lang-en">Basic (A1)</span><span class="lang-nl">Basis (A1)</span></span>
+							</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="beyond-code-section">
+				<h2 style={{ fontSize: 'var(--font-size-2xl)', marginBottom: 'var(--space-xs)' }}>
+					<span class="lang-en">Beyond the Code</span>
+					<span class="lang-nl">Naast de Code</span>
+				</h2>
+
+				<div class="tag-pills" id="beyond-pills-container">
+					<button type="button" class="tag-pill active" data-category="fitness">
+						<span class="lang-en">🏋️ Fitness & Discipline</span>
+						<span class="lang-nl">🏋️ Fitness & Discipline</span>
+					</button>
+					<button type="button" class="tag-pill" data-category="guitar">
+						<span class="lang-en">🎸 Guitar & Music</span>
+						<span class="lang-nl">🎸 Gitaar & Muziek</span>
+					</button>
+					<button type="button" class="tag-pill" data-category="running">
+						<span class="lang-en">🏃 Running for Clarity</span>
+						<span class="lang-nl">🏃 Lopen voor helderheid</span>
+					</button>
+					<button type="button" class="tag-pill" data-category="pets">
+						<span class="lang-en">🐕 Animal Lover</span>
+						<span class="lang-nl">🐕 Dierenvriend</span>
+					</button>
+					<button type="button" class="tag-pill" data-category="eco">
+						<span class="lang-en">🌱 Eco & Sustainability</span>
+						<span class="lang-nl">🌱 Duurzaamheid & Milieu</span>
+					</button>
+				</div>
+
+				<div class="personal-cards-grid single-card" id="personal-cards-grid">
+					<div class="personal-card" data-category="fitness">
+						<div class="personal-card-header">
+							<span class="personal-card-icon">🏋️</span>
+							<h3 class="personal-card-title">
+								<span class="lang-en">Fitness & Discipline</span>
+								<span class="lang-nl">Fitness & Discipline</span>
+							</h3>
+						</div>
+						<p class="personal-card-desc lang-en">
+							Consistency, endurance and long-term commitment. Building physical strength translates directly into focus and determination when tackling complex engineering challenges.
+						</p>
+						<p class="personal-card-desc lang-nl">
+							Volharding, doorzettingsvermogen en langetermijnvisie. Fysieke uitdagingen aangaan vertaalt zich rechtstreeks naar scherpe focus bij complexe softwareprojecten.
+						</p>
+					</div>
+
+					<div class="personal-card" data-category="guitar">
+						<div class="personal-card-header">
+							<span class="personal-card-icon">🎸</span>
+							<h3 class="personal-card-title">
+								<span class="lang-en">Guitar & Music</span>
+								<span class="lang-nl">Gitaar & Muziek</span>
+							</h3>
+						</div>
+						<p class="personal-card-desc lang-en">
+							Curiosity, pattern recognition and creative balance. Playing guitar sharpens problem-solving intuition and fuels continuous learning.
+						</p>
+						<p class="personal-card-desc lang-nl">
+							Nieuwsgierigheid, patroonherkenning en creativiteit. Gitaar spelen scherpt mijn oplossingsgerichtheid aan en voedt de drive om bij te leren.
+						</p>
+					</div>
+
+					<div class="personal-card" data-category="running">
+						<div class="personal-card-header">
+							<span class="personal-card-icon">🏃</span>
+							<h3 class="personal-card-title">
+								<span class="lang-en">Running for Clarity</span>
+								<span class="lang-nl">Lopen voor helderheid</span>
+							</h3>
+						</div>
+						<p class="personal-card-desc lang-en">
+							Mental clarity, dopamine boost and endurance. Running clears the mind, builds energy and maintains peak cognitive balance.
+						</p>
+						<p class="personal-card-desc lang-nl">
+							Mentale helderheid en energie. Lopen helpt me om het hoofd leeg te maken, stress te ontladen en in optimale mentale conditie te blijven.
+						</p>
+					</div>
+
+					<div class="personal-card" data-category="pets">
+						<div class="personal-card-header">
+							<span class="personal-card-icon">🐕</span>
+							<h3 class="personal-card-title">
+								<span class="lang-en">Animal Lover</span>
+								<span class="lang-nl">Dierenvriend</span>
+							</h3>
+						</div>
+						<p class="personal-card-desc lang-en">
+							Responsibility, empathy and grounding. Caring for my big dog keeps me balanced and grounded every single day.
+						</p>
+						<p class="personal-card-desc lang-nl">
+							Verantwoordelijkheid, empathie en rust. Zorgen voor mijn grote hond brengt balans, relativering en dagelijkse voldoening buiten het scherm.
+						</p>
+					</div>
+
+					<div class="personal-card" data-category="eco">
+						<div class="personal-card-header">
+							<span class="personal-card-icon">🌱</span>
+							<h3 class="personal-card-title">
+								<span class="lang-en">Eco & Sustainability</span>
+								<span class="lang-nl">Duurzaamheid & Milieu</span>
+							</h3>
+						</div>
+						<p class="personal-card-desc lang-en">
+							Conscious of environmental impact, nature preservation and resource consumption. Advocating for efficient software engineering, avoiding unnecessary AI resource waste and prioritizing sustainability over overconsumption.
+						</p>
+						<p class="personal-card-desc lang-nl">
+							Bewust bezig met natuurbehoud, milieu-impact en grondstofverbruik. Oog voor efficiënte software, het vermijden van nutteloze AI-verspilling (water/energie) en verantwoorde keuzes tegen overconsumptie.
+						</p>
+					</div>
+				</div>
+			</section>
+		</main>
+		<Footer />
+
+		<script>
+			const pills = document.querySelectorAll<HTMLButtonElement>('.tag-pill');
+			const cards = document.querySelectorAll<HTMLDivElement>('.personal-card');
+			const grid = document.getElementById('personal-cards-grid');
+			const container = document.getElementById('beyond-pills-container');
+			let activeCategory = 'fitness';
+
+			function applyCategory(cat: string) {
+				pills.forEach((p) => {
+					if (p.dataset.category === cat) {
+						p.classList.add('active');
+					} else {
+						p.classList.remove('active');
+					}
+				});
+
+				cards.forEach((c) => {
+					if (c.dataset.category === cat) {
+						c.style.display = 'block';
+						c.style.opacity = '1';
+					} else {
+						c.style.display = 'none';
+						c.style.opacity = '0';
+					}
+				});
+			}
+
+			pills.forEach((pill) => {
+				pill.addEventListener('click', () => {
+					activeCategory = pill.dataset.category || 'fitness';
+					applyCategory(activeCategory);
+				});
+
+				pill.addEventListener('mouseenter', () => {
+					const hoverCat = pill.dataset.category || 'fitness';
+					applyCategory(hoverCat);
+				});
+			});
+
+			if (container) {
+				container.addEventListener('mouseleave', () => {
+					applyCategory(activeCategory);
+				});
+			}
+
+			document.querySelectorAll<HTMLButtonElement>('.col-header').forEach((header) => {
+				header.addEventListener('click', () => {
+					const panelId = header.getAttribute('aria-controls');
+					const panel = panelId ? document.getElementById(panelId) : null;
+					if (!panel) return;
+
+					const isOpen = header.getAttribute('aria-expanded') === 'true';
+					header.setAttribute('aria-expanded', String(!isOpen));
+					panel.classList.toggle('is-open', !isOpen);
+				});
+			});
+
+			// Initialize default view
+			applyCategory('fitness');
+		</script>
+	</body>
+</html>

@@ -1,0 +1,174 @@
+---
+title: 'B2B Commerce Platform'
+description: 'An enterprise Business-to-Business (B2B) commerce portal featuring a React 18 & TypeScript web frontend, Node.js & Express REST API with Prisma ORM, MySQL database and a standalone Java 21 & JavaFX Desktop management application.'
+pubDate: 'May 28 2024'
+heroImage: '../../assets/projects/b2b-portal/homepage-preview.png'
+hideHero: true
+---
+
+import ProjectCarousel from '../../components/ProjectCarousel.jsx';
+
+export const slides = [
+  {
+    image: '/projects/b2b-portal/web/login_55255361431_c.jpg',
+    titleEn: '1. Web Portal Authentication & Multi-Role Login',
+    titleNl: '1. Webportaal Authenticatie & Multi-Role Inloggen',
+    descEn: 'Secure JWT authentication interface for corporate client companies, suppliers and administrators.',
+    descNl: 'Veilige JWT-authenticatie interface voor zakelijke klantbedrijven, leveranciers en beheerders.'
+  },
+  {
+    image: '/projects/b2b-portal/web/orders_55255509713_l.jpg',
+    titleEn: '2. B2B Orders Overview & Filterable Status Catalog',
+    titleNl: '2. B2B Bestellingenoverzicht & Filterbaar Statusoverzicht',
+    descEn: 'Client dashboard managing enterprise purchase orders with real-time status filtering (Pending, Processing, Approved, Shipped, Delivered).',
+    descNl: 'Klantendashboard voor het beheren van zakelijke bestellingen met real-time statusfiltering (In behandeling, Goedgekeurd, Verzonden, Geleverd).'
+  },
+  {
+    image: '/projects/b2b-portal/web/orderdetails1_55254473317_l.jpg',
+    titleEn: '3. Detailed B2B Order Specification & Line Items',
+    titleNl: '3. Gedetailleerde B2B Bestelgids & Artikelregels',
+    descEn: 'Comprehensive breakdown of ordered inventory items, unit pricing, quantities, tax calculations and delivery schedules.',
+    descNl: 'Uitgebreid overzicht van bestelde artikelen, stukprijzen, aantallen, btw-berekeningen en leveringsschema\'s.'
+  },
+  {
+    image: '/projects/b2b-portal/web/orderdetails2_55255509708_l.jpg',
+    titleEn: '4. Order Status Tracking & Supplier Workflow',
+    titleNl: '4. Bestelstatus Tracking & Leveranciers Workflow',
+    descEn: 'Tracking order progression, supplier approval timelines and logistics dispatch status.',
+    descNl: 'Opvolgen van de bestelvoortgang, goedkeuringstermijnen van leveranciers en logistieke verzendstatus.'
+  },
+  {
+    image: '/projects/b2b-portal/web/invoicetemplate_55254473367_z.jpg',
+    titleEn: '5. Automated B2B Invoice Generation & Export',
+    titleNl: '5. Geautomatiseerde B2B Factuurgeneratie & Export',
+    descEn: 'Generating formatted B2B invoices with corporate billing details, payment terms and downloadable PDF export.',
+    descNl: 'Genereren van geformatteerde B2B-facturen met bedrijfs- en facturatiegegevens, betalingsvoorwaarden en PDF-export.'
+  },
+  {
+    image: '/projects/b2b-portal/web/notifications_55255509738_l.jpg',
+    titleEn: '6. Real-Time System Notifications & Alerts',
+    titleNl: '6. Real-Time Systeemnotificaties & Meldingen',
+    descEn: 'Real-time alert center notifying companies of order status changes, price updates and contract renewals.',
+    descNl: 'Meldingencentrum dat bedrijven in real-time op de hoogte stelt van statuswijzigingen, prijsaanpassingen en contractverlengingen.'
+  },
+  {
+    image: '/projects/b2b-portal/web/profile1_55255764775_l.jpg',
+    titleEn: '7. Corporate Account & Company Profile Management',
+    titleNl: '7. Bedrijfsprofiel & Accountbeheer',
+    descEn: 'Managing enterprise company details, tax registration numbers, billing addresses and primary contact information.',
+    descNl: 'Beheren van bedrijfsgegevens, btw-nummers, facturatie-adressen en primaire contactgegevens.'
+  },
+  {
+    image: '/projects/b2b-portal/web/profile2_55255605884_l.jpg',
+    titleEn: '8. Payment Methods & Financial Settings',
+    titleNl: '8. Betaalmethoden & Financiële Instellingen',
+    descEn: 'Configuring corporate payment channels, credit limits and automated invoicing preferences.',
+    descNl: 'Configureren van zakelijke betaalmethoden, kredietlimieten en geautomatiseerde facturatie-instellingen.'
+  },
+  {
+    image: '/projects/b2b-portal/web/profile3_55255764850_l.jpg',
+    titleEn: '9. Address Book & Shipping Destinations',
+    titleNl: '9. Adresboek & Leveringslocaties',
+    descEn: 'Managing multiple warehouse and office delivery addresses for enterprise B2B shipments.',
+    descNl: 'Beheren van meerdere magazijn- en kantoorlocaties voor zakelijke B2B-leveringen.'
+  },
+  {
+    image: '/projects/b2b-portal/web/changepassword_55255509763_l.jpg',
+    titleEn: '10. Account Security & Password Renewal',
+    titleNl: '10. Accountbeveiliging & Wachtwoord Wijzigen',
+    descEn: 'User security management allowing password changes with bcrypt validation.',
+    descNl: 'Beveiligingsbeheer waar gebruikers hun wachtwoord kunnen wijzigen met bcrypt-validatie.'
+  },
+  {
+    image: '/projects/b2b-portal/java/login-page_54407481477_z.jpg',
+    titleEn: '11. Java Desktop Administrator Login (JavaFX)',
+    titleNl: '11. Java Desktop Administrator Login (JavaFX)',
+    descEn: 'Standalone JavaFX desktop client authentication for internal system administrators.',
+    descNl: 'Desktop authenticatie in JavaFX voor interne beheerders van het B2B-platform.'
+  },
+  {
+    image: '/projects/b2b-portal/java/companies_54408593438_l.jpg',
+    titleEn: '12. Desktop B2B Companies Directory (JavaFX)',
+    titleNl: '12. Desktop Bedrijvenoverzicht (JavaFX)',
+    descEn: 'JavaFX administrator interface displaying all registered B2B companies, verification statuses and catalog access rules.',
+    descNl: 'JavaFX beheerdersinterface met een overzicht van alle geregistreerde B2B-bedrijven, verificatiestatussen en catalogusrechten.'
+  },
+  {
+    image: '/projects/b2b-portal/java/update-company_54408535419_l.jpg',
+    titleEn: '13. Edit B2B Company Details & Validation (JavaFX)',
+    titleNl: '13. Bedrijfsgegevens Bewerken & Validatie (JavaFX)',
+    descEn: 'Admin form in JavaFX to update corporate credentials, assign credit tiers and validate business tax IDs.',
+    descNl: 'Beheerdersformulier in JavaFX om bedrijfsgegevens bij te werken, kredietklassen toe te wijzen en btw-nummers te valideren.'
+  },
+  {
+    image: '/projects/b2b-portal/java/orders_54408730070_l.jpg',
+    titleEn: '14. Global Desktop B2B Orders Dashboard (JavaFX)',
+    titleNl: '14. Globaal Desktop B2B Bestellingen Beheer (JavaFX)',
+    descEn: 'Comprehensive JavaFX order management table allowing internal staff to approve, modify, or audit B2B transactions.',
+    descNl: 'Uitgebreide JavaFX bestellingen-beheertabel waarmee interne medewerkers B2B-transacties kunnen goedkeuren, bewerken of auditeren.'
+  }
+];
+
+<div style={{ margin: '1rem 0 2.5rem 0' }}>
+  <ProjectCarousel client:load slides={slides} />
+</div>
+
+<div class="lang-en">
+
+## 1. Introduction & Overview
+
+**B2B Commerce Platform** is a full-stack enterprise Business-to-Business solution developed for the *Software Development Project II (SDP II)* course at HOGENT (2024). The platform connects suppliers, business clients and administrators in a multi-tier B2B ecosystem.
+
+The system encompasses three core components:
+1. **Frontend Web Portal**: React 18, TypeScript, Tailwind CSS and Vite.
+2. **Backend REST API**: Node.js, Express, Prisma ORM, JWT Authentication and MySQL 8 database.
+3. **Java Desktop Client**: Java 21, JavaFX and REST client integration for internal administrative management.
+
+---
+
+## 2. Technical Architecture & Tech Stack
+
+### Frontend Architecture
+* **React 18 & TypeScript**: Strongly typed component architecture with custom hooks.
+* **Tailwind CSS & Lucide Icons**: Responsive, accessible dark/light UI design.
+* **State Management & Routing**: React Router v6 and Axios HTTP client with automated JWT interceptors.
+
+### Backend & Database Architecture
+* **Node.js & Express**: High-concurrency RESTful API endpoints.
+* **Prisma ORM & MySQL 8**: Type-safe relational database queries, schema migrations and relational data modeling.
+* **Security & Auth**: Role-Based Access Control (RBAC), bcrypt password hashing and JWT bearer tokens.
+
+### Java Management Client
+* **Java 21 & JavaFX**: Desktop management software for internal administrators to manage orders, suppliers and catalog inventory.
+
+</div>
+
+<div class="lang-nl">
+
+## 1. Introductie & Projectomschrijving
+
+**B2B Commerce Platform** is een full-stack enterprise Business-to-Business oplossing ontwikkeld voor het vak *Software Development Project II (SDP II)* aan HOGENT (2024). Het platform verbindt leveranciers, zakelijke klanten en beheerders in een meertalig B2B-ecosysteem.
+
+Het systeem bestaat uit drie kernonderdelen:
+1. **Frontend Webportaal**: React 18, TypeScript, Tailwind CSS en Vite.
+2. **Backend REST API**: Node.js, Express, Prisma ORM, JWT-authenticatie en MySQL 8 databank.
+3. **Java Desktop Client**: Java 21, JavaFX en REST-client integratie voor interne beheerders.
+
+---
+
+## 2. Technologische Architectuur & Tech Stack
+
+### Frontend Architectuur
+* **React 18 & TypeScript**: Sterk getypeerde componentarchitectuur met custom hooks.
+* **Tailwind CSS**: Responsief en toegankelijk UI-ontwerp.
+* **State Management & Routing**: React Router v6 en Axios met geautomatiseerde JWT-interceptors.
+
+### Backend & Databank Architectuur
+* **Node.js & Express**: Prestatiegerichte RESTful API-endpoints.
+* **Prisma ORM & MySQL 8**: Type-safe relationele databankqueries en migraties.
+* **Beveiliging & Autorisatie**: Role-Based Access Control (RBAC), BCrypt wachtwoord-hashing en JWT-tokens.
+
+### Java Management Client
+* **Java 21 & JavaFX**: Desktopbeheersoftware voor interne administrators.
+
+</div>

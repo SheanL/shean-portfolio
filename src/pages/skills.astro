@@ -1,0 +1,54 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SoftSkills from '../components/SoftSkills.jsx';
+import SkillMarquee from '../components/SkillMarquee.jsx';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Skills - ${SITE_TITLE}`} description="My Skills" />
+	</head>
+	<body>
+		<Header />
+		<main style={{ maxWidth: '960px', margin: '0 auto', padding: '2rem 1rem' }}>
+			<h1 style={{ textAlign: 'center', marginBottom: '3rem' }}>
+				<span class="lang-en">My Skills</span>
+				<span class="lang-nl">Mijn Vaardigheden</span>
+			</h1>
+			
+			<SkillMarquee client:load />
+
+			<hr style={{ margin: '4rem 0' }} />
+
+			<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem' }}>
+				<div>
+					<h3 style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+						<span>🧠</span>
+						<span class="lang-en">Soft Skills</span>
+						<span class="lang-nl">Persoonlijke Vaardigheden</span>
+					</h3>
+					<SoftSkills client:load />
+				</div>
+
+				<div>
+					<h3 style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+						<span>🌐</span>
+						<span class="lang-en">Languages</span>
+						<span class="lang-nl">Talenkennis</span>
+					</h3>
+					<ul style={{ listStyle: 'none', padding: 0, fontSize: '1.1rem', lineHeight: '2' }}>
+						<li>🇳🇱 <strong><span class="lang-en">Dutch</span><span class="lang-nl">Nederlands</span></strong> (<span class="lang-en">Native</span><span class="lang-nl">Moedertaal</span> / C2)</li>
+						<li>🇬🇧 <strong><span class="lang-en">English</span><span class="lang-nl">Engels</span></strong> (<span class="lang-en">Fluent</span><span class="lang-nl">Vloeiend</span> / C1)</li>
+						<li>🇪🇸 <strong><span class="lang-en">Spanish</span><span class="lang-nl">Spaans</span></strong> (<span class="lang-en">Basic</span><span class="lang-nl">Basis</span> / A2)</li>
+						<li>🇫🇷 <strong><span class="lang-en">French</span><span class="lang-nl">Frans</span></strong> (<span class="lang-en">Basic</span><span class="lang-nl">Basis</span> / A1)</li>
+					</ul>
+				</div>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>

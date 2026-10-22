@@ -1,0 +1,50 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ContactForm from '../components/ContactForm.jsx';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Contact | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+		<style>
+			main {
+				width: 100%;
+				max-width: 800px;
+				margin: 0 auto;
+				padding: clamp(0.75rem, 4vw, 2em) clamp(0.75rem, 3vw, 1em);
+				box-sizing: border-box;
+			}
+			main h1 {
+				text-align: center;
+				font-size: clamp(1.7rem, 6vw, 2.6rem);
+				margin-bottom: 0.35rem;
+				text-transform: uppercase;
+				letter-spacing: 0.04em;
+			}
+			main > p {
+				text-align: center;
+				margin-bottom: clamp(1rem, 3vw, 1.75rem);
+				font-size: clamp(0.88rem, 2.4vw, 1rem);
+				line-height: 1.6;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Contact</h1>
+			<p class="lang-en">
+				Have a question, want to collaborate on a project? Want to see more of my work? Or just say hi? Send me a message below.
+			</p>
+			<p class="lang-nl">
+				Heb je een vraag, wil je samenwerken aan een project? Wil je meer van mijn werk zien? Of gewoon hallo zeggen? Stuur me hieronder een bericht.
+			</p>
+			<ContactForm client:load />
+		</main>
+		<Footer />
+	</body>
+</html>

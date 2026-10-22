@@ -1,0 +1,183 @@
+---
+title: 'Spring Boot Zomerfestivals'
+description: 'An enterprise Java 21 & Spring Boot 3.3 web application with Spring Security (RBAC), Spring Data JPA + Hibernate ORM, MySQL database, validation & exception handling, REST & Web Services and Thymeleaf MVC.'
+pubDate: 'Jul 21 2024'
+heroImage: '../../assets/projects/zomerfestivals/homepage-preview.png'
+hideHero: true
+---
+
+import ProjectCarousel from '../../components/ProjectCarousel.jsx';
+
+export const slides = [
+  {
+    image: '/projects/zomerfestivals/user-login.png',
+    titleEn: '1. User Login (ROLE_USER)',
+    titleNl: '1. Gebruiker Inloggen (ROLE_USER)',
+    descEn: 'Logging in as a regular user to access the festival catalog.',
+    descNl: 'Inloggen als gewone gebruiker om de festivalcatalogus te openen.'
+  },
+  {
+    image: '/projects/zomerfestivals/user-step1-festivals.png',
+    titleEn: '2. User Festival Catalog Overview',
+    titleNl: '2. Gebruiker Festival Overzicht',
+    descEn: 'Browsing summer festivals, music genres, regions, ticket prices and available ticket capacity as a logged-in user.',
+    descNl: 'Bladeren door zomerfestivals, muziekgenres, regio\'s, ticketprijzen en beschikbare ticketcapaciteit als ingelogde gebruiker.'
+  },
+  {
+    image: '/projects/zomerfestivals/user-step3-ticket-error.png',
+    titleEn: '3. Ticket Order Limit Validation Error',
+    titleNl: '3. Ticket Bestelvalidatie & Rode Foutmelding',
+    descEn: "Attempting to order 20 tickets exceeds allowed limits and triggers a red business error: 'Festival limit 15 tickets, User total tickets limit 50.'",
+    descNl: "Proberen om 20 tickets te bestellen overschrijdt de limiet en triggert een rode foutmelding: 'Festival limit 15 tickets, User total tickets limit 50.'"
+  },
+  {
+    image: '/projects/zomerfestivals/user-step2-purchase-form.png',
+    titleEn: '4. Ticket Purchase Form (3 Tickets Selected)',
+    titleNl: '4. Ticket Bestelformulier (3 Tickets Ingevuld)',
+    descEn: 'Adjusting ticket quantity to 3 tickets (within the allowed limit of 15 tickets per festival).',
+    descNl: 'Aanpassen van het gewenste aantal naar 3 tickets (binnen de toegestane limiet van 15 tickets per festival).'
+  },
+  {
+    image: '/projects/zomerfestivals/user-step4-success.png',
+    titleEn: '5. Successful Ticket Purchase Confirmation',
+    titleNl: '5. Succesvolle Ticket Aankoop & Bevestiging',
+    descEn: 'Submitting a valid ticket order (3 tickets) updates MySQL inventory in real-time and displays a green confirmation message.',
+    descNl: 'Bestellen van 3 tickets werkt de ticketvoorraad in MySQL bij en toont een groene bevestigingsmelding.'
+  },
+  {
+    image: '/projects/zomerfestivals/user-step5-mytickets.png',
+    titleEn: '6. Personal Ticket History Overview (/tickets/myTickets)',
+    titleNl: '6. Persoonlijk Ticketoverzicht (/tickets/myTickets)',
+    descEn: 'Navigating to My Tickets (/tickets/myTickets) to view all purchased tickets sorted by date, region and genre (Total Tickets: 3).',
+    descNl: 'Navigeren naar Mijn Tickets (/tickets/myTickets) om alle gekochte tickets van de gebruiker te bekijken, gesorteerd op datum, regio en genre (Totaal: 3 tickets).'
+  },
+  {
+    image: '/projects/zomerfestivals/admin-login.png',
+    titleEn: '7. Admin Logout & Login (ROLE_ADMIN)',
+    titleNl: '7. Uitloggen & Inloggen als Beheerder (ROLE_ADMIN)',
+    descEn: 'Signing in as an administrator to manage the festival catalog.',
+    descNl: 'Uitloggen en inloggen met beheerdersgegevens (gebruikersnaam: admin, wachtwoord: admin) voor beheerrechten.'
+  },
+  {
+    image: '/projects/zomerfestivals/step1-festivals-overview.png',
+    titleEn: '8. Admin Festival Catalog & Action Links',
+    titleNl: '8. Beheerder Festival Catalogus & Actielinks',
+    descEn: 'Admin dashboard overview of summer festivals with action links (Add => Performance) to schedule new performances.',
+    descNl: 'Beheerdersoverzicht van alle zomerfestivals met beheersknoppen (Add => Performance) om optredens aan specifieke festivals toe te voegen.'
+  },
+  {
+    image: '/projects/zomerfestivals/step2-add-performance.png',
+    titleEn: '9. Add Performance Form (Amsterdam Electro Fest)',
+    titleNl: '9. Optreden Toevoegen Formulier (Amsterdam Electro Fest)',
+    descEn: 'Fully filled admin form for "Amsterdam Electro Fest" entering artist name ("Charlotte de Witte"), start time ("23:00"), subgenres ("Acid Techno" & "Acid") and festival numbers ("1200" & "1500").',
+    descNl: 'Volledig ingevuld beheerdersformulier voor "Amsterdam Electro Fest" met artiestnaam ("Charlotte de Witte"), starttijd ("23:00"), subgenres ("Acid Techno" & "Acid"), en festivalnummers ("1200" & "1500").'
+  },
+  {
+    image: '/projects/zomerfestivals/step2b-validation-errors.png',
+    titleEn: '10. Form Validation & Red Error Messages per Field',
+    titleNl: '10. Formuliervalidatie & Expliciete Rode Foutmeldingen',
+    descEn: 'Demonstrating field validation via Thymeleaf th:errors: invalid inputs trigger red error messages under each field ("Name letters only", "Minutes must be 00", "Festival number 1 must be multiple of 3").',
+    descNl: 'Demonstratie van veldvalidatie via Thymeleaf th:errors: bij ongeldige invoer verschijnen rode foutmeldingen (bijv. "Name letters only", "Minutes must be 00", "Festival number 1 multiple of 3").'
+  },
+  {
+    image: '/projects/zomerfestivals/step3-added-result.png',
+    titleEn: '11. Performance Form Input (Lokerse Feesten)',
+    titleNl: '11. Invoeren van Artiest & Formulierverwerking',
+    descEn: 'Filling in artist name "Martin Garrix" into the performance form for Lokerse Feesten and verifying required field validation.',
+    descNl: 'Invoeren van artiestnaam "Martin Garrix" in het beheerdersformulier voor Lokerse Feesten en verwerken van de podiumplanning.'
+  },
+  {
+    image: '/projects/zomerfestivals/region-step1-overview.png',
+    titleEn: '12. Music Region Catalog & Updated Lineup (Amsterdam)',
+    titleNl: '12. Muziek Regio Overzicht & Toegevoegd Optreden (Amsterdam)',
+    descEn: 'Updated table "Festivals region: Amsterdam" clearly showing "Charlotte de Witte" at 23:00 (with subgenres Acid Techno & Acid) added as the 4th performance on the stage schedule.',
+    descNl: 'Bijgewerkt overzicht "Festivals region: Amsterdam" waarin "Charlotte de Witte" om 23:00 (met subgenres Acid Techno & Acid) duidelijk als 4e optreden is toegevoegd aan het tijdschema van Amsterdam Electro Fest.'
+  },
+  {
+    image: '/projects/zomerfestivals/step4-error-404.png',
+    titleEn: '13. HTTP 404 Exception Handling',
+    titleNl: '13. HTTP 404 Exception Handling',
+    descEn: 'Demonstrating global exception handling when requesting non-existent festival routes or invalid endpoints.',
+    descNl: 'Demonstratie van globale exception handling wanneer een onbestaande pagina (/non-existent-page-demo-404) wordt opgevraagd.'
+  }
+];
+
+<div style={{ margin: '1rem 0 2.5rem 0' }}>
+  <ProjectCarousel client:load slides={slides} />
+</div>
+
+<div class="lang-en">
+
+## 1. Introduction & Overview
+
+**Spring Boot Zomerfestivals** is an enterprise Java web application developed for the *Enterprise Web Development Java (EWDJ)* course at HOGENT (2024). The application provides a comprehensive management platform for summer music festivals, performances, genres, regions and user ticket reservations.
+
+The application leverages **Java 21** and **Spring Boot 3.3**, utilizing **Spring Data JPA**, **Hibernate ORM**, **Spring Security** and robust validation & exception handling to deliver a secure, scalable backend coupled with dynamic Thymeleaf MVC views.
+
+---
+
+## 2. Technical Architecture & Tech Stack
+
+### Enterprise Java Stack
+* **Java 21** & **Spring Boot 3.3.1**: Modern LTS Java runtime with Spring Boot starter framework.
+* **Spring Data JPA & Hibernate 6 ORM**: Data persistence layer with repository pattern (`FestivalRepository`, `GenreRepository`, `PerformanceRepository`, `TicketRepository`, `UserRepository`).
+* **Spring Security 6**: Role-based access control (RBAC) with administrator and regular-user roles, BCrypt password hashing and custom `UserDetailsService`.
+* **Validation & Exception Handling**: Custom `PerformanceValidator` and Spring `@Valid` bean validation rendering explicit red error messages next to each input field via Thymeleaf `th:errors`, coupled with `@ControllerAdvice` for global HTTP exception management.
+* **Ticket Order Validation**: Business rules restricting ticket orders (maximum 15 tickets per festival, maximum 50 total tickets per user account and available ticket capacity check).
+* **MySQL 8 & HikariCP**: High-performance relational database persistence with HikariCP connection pooling and automated schema initialization (`InitializeData.java`).
+* **Spring Web Services & REST API**: SOAP Web Services with WS-Addressing alongside JSON REST Controllers (`FestivalRestController`).
+* **Testing**: JUnit 5, Mockito and Spring Boot Test integration suite (`FestivalControllerTest`, `PerformanceControllerTests`, `TicketControllerTest`).
+
+---
+
+## 3. Core Features
+
+### 🎪 Festival & Lineup Management
+* **Festival Catalog (Festival #1 & #2)**: Browse summer festivals filtered by music genres (Techno, Rock, Pop, Classical, Electronic, Indie Rock) and regions (Amsterdam, Brussels, Antwerp, Gent, Lokeren, Rotterdam).
+* **Performance Lineups**: Schedule artists, set stage times and assign subgenres for festival stages.
+* **Ticket Reservations (`ROLE_USER`)**: Real-time ticket order processing, capacity management, ticket limits and personal order history (`/tickets/myTickets`).
+
+### 🔐 Security & Validation Control
+* **Public Access**: Guest browsing of festival lineups, dates and regions.
+* **Registered User (`ROLE_USER`)**: Book festival tickets, view personal ticket history and manage account details.
+* **Administrator (`ROLE_ADMIN` — `admin` / `admin`)**: Add and edit festival performances, handle form validations and manage exception states.
+
+</div>
+
+<div class="lang-nl">
+
+## 1. Introductie & Projectomschrijving
+
+**Spring Boot Zomerfestivals** is een enterprise Java webapplicatie ontwikkeld in het kader van het opleidingsonderdeel *Enterprise Web Development Java (EWDJ)* aan HOGENT (2024). Het platform biedt een uitgebreid beheersysteem voor zomerfestivals, optredens, genres, locaties/regio's en ticketreserveringen.
+
+De applicatie maakt gebruik van **Java 21** en **Spring Boot 3.3**, ondersteund door **Spring Data JPA**, **Hibernate ORM**, **Spring Security**, en uitgebreide formuliervalidatie en foutafhandeling voor een robuuste backend en dynamische Thymeleaf MVC-views.
+
+---
+
+## 2. Technologische Architectuur & Tech Stack
+
+### Enterprise Java Stack
+* **Java 21** & **Spring Boot 3.3.1**: Moderne LTS Java runtime met Spring Boot starter framework.
+* **Spring Data JPA & Hibernate 6 ORM**: Datapersistentielaag met repository patroon (`FestivalRepository`, `GenreRepository`, `PerformanceRepository`, `TicketRepository`, `UserRepository`).
+* **Spring Security 6**: Rolgebaseerde autorisatie (RBAC) met administrator- en gewone gebruikersrollen, BCrypt wachtwoord-hashing en custom `UserDetailsService`.
+* **Validatie & Exception Handling**: Custom `PerformanceValidator` en Spring `@Valid` bean-validatie die expliciete rode foutmeldingen onder elk invoerveld toont via Thymeleaf `th:errors`, gekoppeld aan `@ControllerAdvice` voor globale HTTP foutafhandeling.
+* **Ticket Bestelvalidatie**: Bedrijfslogica die ticketbestellingen beperkt (maximaal 15 tickets per festival, maximaal 50 totale tickets per gebruikersaccount en controle van de beschikbare capaciteit).
+* **MySQL 8 & HikariCP**: Prestatiegerichte relationele databank met HikariCP connection pooling en geautomatiseerde schema-initialisatie (`InitializeData.java`).
+* **Spring Web Services & REST API**: SOAP Web Services met WS-Addressing en JSON REST Controllers (`FestivalRestController`).
+* **Testen**: JUnit 5, Mockito en Spring Boot Test integratiesuite (`FestivalControllerTest`, `PerformanceControllerTests`, `TicketControllerTest`).
+
+---
+
+## 3. Kernfunctionaliteiten
+
+### 🎪 Festival- & Line-up Beheer
+* **Festivalcatalogus (Festival #1 & #2)**: Blader door zomerfestivals gefilterd op muziekgenres (Techno, Rock, Pop, Klassiek, Electronic, Indie Rock) en regio's (Amsterdam, Brussel, Antwerpen, Gent, Lokeren, Rotterdam).
+* **Optredens & Line-ups**: Artiesten inplannen met specifieke podia, tijden en subgenres.
+* **Ticketreserveringen (`ROLE_USER`)**: Real-time ticketverwerking, capaciteitsbeheer, ticketlimieten en persoonlijk besteloverzicht (`/tickets/myTickets`).
+
+### 🔐 Beveiliging, Validatie & Foutafhandeling
+* **Publieke Toegang**: Bekijken van festivals, datums en locaties.
+* **Ingelogde Gebruiker (`ROLE_USER`)**: Tickets bestellen en eigen besteloverzicht beheren.
+* **Beheerder (`ROLE_ADMIN` — `admin` / `admin`)**: Optredens toevoegen, formuliervalidatie verwerken en uitzonderingssituaties beheren.
+
+</div>

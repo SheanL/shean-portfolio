@@ -1,0 +1,230 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+import ProjectCarousel from '../components/ProjectCarousel.jsx';
+
+type Props = CollectionEntry<'projects'>['data'] & {
+	hideHero?: boolean;
+	hasBottomDemo?: boolean;
+	slides?: Array<{
+		image: string;
+		titleEn: string;
+		titleNl: string;
+		descEn: string;
+		descNl: string;
+	}>;
+};
+
+const frontmatter = Astro.props.frontmatter || Astro.props.content || Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, slides, hasBottomDemo } = frontmatter;
+const isHeroHidden = Boolean(frontmatter.hideHero || Astro.props.hideHero || (slides && slides.length > 0));
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+		<style>
+			main {
+				width: calc(100% - 2em);
+				max-width: 100%;
+				margin: 0;
+			}
+			.hero-image {
+				width: 100%;
+				max-width: 800px;
+				margin: 0 auto 2rem auto;
+			}
+			.hero-image img {
+				display: block;
+				margin: 0 auto;
+				max-width: 100%;
+				max-height: 380px;
+				object-fit: cover;
+				border-radius: 14px;
+				box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+			}
+			.prose {
+				width: 840px;
+				max-width: calc(100% - 2em);
+				margin: auto;
+				padding: 1em;
+				color: #1e293b;
+				font-size: 1rem;
+			}
+			.prose :global(p),
+			.prose :global(li) {
+				color: #334155;
+				font-size: 1rem;
+				line-height: 1.65;
+				margin-bottom: 1.2rem;
+			}
+			.prose :global(h1) {
+				font-size: 2.1rem;
+			}
+			.prose :global(h2) {
+				font-size: 1.55rem;
+				margin-top: 1.75rem;
+				margin-bottom: 0.6rem;
+			}
+			.prose :global(h3) {
+				font-size: 1.25rem;
+				margin-top: 1.4rem;
+				margin-bottom: 0.4rem;
+			}
+			:global(html.dark) .prose,
+			:global(.dark) .prose {
+				color: #f8fafc;
+			}
+			:global(html.dark) .prose :global(p),
+			:global(html.dark) .prose :global(li),
+			:global(html.dark) .prose :global(td),
+			:global(html.dark) .prose :global(th),
+			:global(html.dark) .prose :global(span),
+			:global(html.dark) .prose :global(div),
+			:global(.dark) .prose :global(p),
+			:global(.dark) .prose :global(li),
+			:global(.dark) .prose :global(td),
+			:global(.dark) .prose :global(th),
+			:global(.dark) .prose :global(span),
+			:global(.dark) .prose :global(div) {
+				color: #e2e8f0 !important;
+			}
+			:global(html.dark) .prose :global(h1),
+			:global(html.dark) .prose :global(h2),
+			:global(html.dark) .prose :global(h3),
+			:global(html.dark) .prose :global(h4),
+			:global(html.dark) .prose :global(h5),
+			:global(html.dark) .prose :global(h6),
+			:global(html.dark) .prose :global(strong),
+			:global(html.dark) .prose :global(b),
+			:global(.dark) .prose :global(h1),
+			:global(.dark) .prose :global(h2),
+			:global(.dark) .prose :global(h3),
+			:global(.dark) .prose :global(h4),
+			:global(.dark) .prose :global(h5),
+			:global(.dark) .prose :global(h6),
+			:global(.dark) .prose :global(strong),
+			:global(.dark) .prose :global(b) {
+				color: #ffffff !important;
+			}
+			.prose :global(img) {
+				display: block;
+				max-width: 640px;
+				width: 100%;
+				margin: 1.5rem auto;
+				border-radius: 10px;
+				box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+				border: 1px solid rgba(120, 120, 120, 0.2);
+			}
+			.title {
+				margin-bottom: 1em;
+				padding: 1em 0;
+				text-align: center;
+				line-height: 1;
+			}
+			.title h1 {
+				margin: 0 0 0.5em 0;
+			}
+			.demo-jump {
+				margin: 0.75rem 0 0 0;
+			}
+			.demo-jump a {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				font-family: var(--font-sans);
+				font-size: 1.15rem;
+				font-weight: 700;
+				text-decoration: none;
+				color: var(--accent) !important;
+				transition: color 0.2s ease;
+			}
+			:global(.dark) .prose .demo-jump a :global(span) {
+				color: var(--accent) !important;
+			}
+			.demo-jump a:hover {
+				color: var(--accent-dark) !important;
+			}
+			:global(#demo) {
+				scroll-margin-top: 5.5rem;
+				margin-top: 2.5rem;
+				padding-top: 0.5rem;
+			}
+			:global(#project-top) {
+				scroll-margin-top: 5.5rem;
+			}
+			:global(.demo-back) {
+				text-align: center;
+				margin: 1.75rem 0 0 0;
+			}
+			:global(.demo-back a) {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				width: 2.75rem;
+				height: 2.75rem;
+				border-radius: 999px;
+				border: 1.5px solid var(--accent);
+				color: var(--accent);
+				text-decoration: none;
+				font-size: 1.5rem;
+				line-height: 1;
+				font-family: var(--font-sans);
+			}
+			:global(.demo-back a:hover) {
+				background: var(--accent);
+				color: white;
+			}
+			.date {
+				margin-bottom: 0.5em;
+				color: rgb(var(--gray));
+			}
+			.last-updated-on {
+				font-style: italic;
+			}
+		</style>
+	</head>
+
+	<body>
+		<Header />
+		<main>
+			<article>
+				{!isHeroHidden && heroImage && (
+					<div class="hero-image">
+						<Image width={1020} height={510} src={heroImage} alt="" />
+					</div>
+				)}
+				<div class="prose">
+					<div class="title" id="project-top">
+						<div class="date">
+							<FormattedDate date={pubDate} />
+							{
+								updatedDate && (
+									<div class="last-updated-on">
+										Last updated on <FormattedDate date={updatedDate} />
+									</div>
+								)
+							}
+						</div>
+						<h1>{title}</h1>
+						{hasBottomDemo && (
+							<p class="demo-jump">
+								<a href="#demo">
+									<span class="lang-en">Demo ↓</span>
+									<span class="lang-nl">Demo ↓</span>
+								</a>
+							</p>
+						)}
+						<hr />
+					</div>
+					<slot />
+				</div>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>

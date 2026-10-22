@@ -1,0 +1,356 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import Header from '../../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+
+const allProjects = (await getCollection('projects')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+// The thesis is the primary featured project; the remaining projects use the compact grid.
+const featuredBP = allProjects.find((p) => p.id.includes('cognitieve-assistent')) || allProjects[0];
+
+const secondaryProjects = allProjects.filter((p) => p.id !== featuredBP?.id);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Work - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+		<style>
+			main {
+				width: 960px;
+				max-width: calc(100% - 2rem);
+				margin: 0 auto;
+				padding: 2rem 1rem;
+			}
+			.page-title {
+				text-align: center;
+				font-size: 2.5rem;
+				margin-bottom: 2.5rem;
+			}
+
+			/* Featured Project (SIDE-BY-SIDE: Hele foto links, Alle tekst rechts) */
+			.featured-section {
+				margin-bottom: 2.5rem;
+			}
+			.featured-badge {
+				display: inline-block;
+				background: none;
+				color: var(--accent);
+				padding: 0;
+				font-size: 0.85rem;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 1.5px;
+				margin-bottom: 0.75rem;
+			}
+			.featured-card {
+				display: grid;
+				grid-template-columns: 290px 1fr;
+				background: rgba(255, 255, 255, 0.04);
+				border: 1px solid rgba(120, 120, 120, 0.2);
+				border-radius: 16px;
+				overflow: hidden;
+				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+				align-items: stretch;
+			}
+			:global(.dark) .featured-card {
+				background: rgba(255, 255, 255, 0.02);
+				border-color: rgba(255, 255, 255, 0.1);
+			}
+			.featured-card:hover {
+				transform: translateY(-4px);
+				box-shadow: 0 8px 25px rgba(89, 106, 255, 0.18);
+			}
+			.featured-image-wrapper {
+				width: 100%;
+				height: 100%;
+				min-height: 280px;
+				overflow: hidden;
+				background: #fefefc;
+			}
+			.featured-image-wrapper a {
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
+			.featured-image-wrapper img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center;
+				display: block;
+			}
+			.featured-body {
+				padding: 1.75rem 2rem;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+			}
+			.featured-title {
+				font-size: 1.65rem;
+				font-weight: 700;
+				margin-bottom: 0.35rem;
+				line-height: 1.25;
+			}
+			.featured-title a {
+				color: inherit;
+				text-decoration: none;
+			}
+			.featured-title a:hover {
+				color: var(--accent);
+			}
+			.featured-subtitle {
+				font-size: 1.05rem;
+				font-weight: 600;
+				color: var(--accent);
+				margin-bottom: 0.35rem;
+				line-height: 1.35;
+			}
+			.featured-tagline {
+				font-size: 0.88rem;
+				font-style: italic;
+				color: rgb(var(--gray));
+				margin-bottom: 0.5rem;
+				line-height: 1.4;
+			}
+			.featured-date {
+				color: rgb(var(--gray));
+				font-size: 0.85rem;
+				margin-bottom: 0.85rem;
+			}
+			.featured-desc {
+				font-size: 0.96rem;
+				line-height: 1.6;
+				margin-bottom: 1.25rem;
+				color: var(--gray-dark);
+			}
+			:global(.dark) .featured-desc {
+				color: rgb(var(--gray));
+			}
+
+			/* Secondary Projects Grid (KLEINER ERONDER) */
+			.secondary-heading {
+				font-size: 1.5rem;
+				margin-bottom: 1.25rem;
+				border-bottom: 2px solid rgba(120, 120, 120, 0.2);
+				padding-bottom: 0.5rem;
+			}
+			.secondary-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+				gap: 1.5rem;
+			}
+			.secondary-card {
+				display: flex;
+				flex-direction: column;
+				background: rgba(255, 255, 255, 0.04);
+				border: 1px solid rgba(120, 120, 120, 0.2);
+				border-radius: 12px;
+				overflow: hidden;
+				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+			}
+			:global(.dark) .secondary-card {
+				background: rgba(255, 255, 255, 0.02);
+				border-color: rgba(255, 255, 255, 0.1);
+			}
+			.secondary-card:hover {
+				transform: translateY(-4px);
+				box-shadow: 0 8px 25px rgba(89, 106, 255, 0.18);
+			}
+			.secondary-image-wrapper {
+				width: 100%;
+				height: 180px;
+				overflow: hidden;
+				background: #000;
+			}
+			.secondary-image-wrapper img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+			}
+			.secondary-body {
+				padding: 1.25rem;
+				display: flex;
+				flex-direction: column;
+				flex-grow: 1;
+			}
+			.secondary-title {
+				font-size: 1.2rem;
+				margin-bottom: 0.4rem;
+				line-height: 1.3;
+			}
+			.secondary-desc {
+				font-size: 0.92rem;
+				line-height: 1.45;
+				margin-bottom: 1rem;
+				flex-grow: 1;
+				color: var(--gray-dark);
+			}
+			:global(.dark) .secondary-desc {
+				color: rgb(var(--gray));
+			}
+
+			.featured-actions {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.7rem;
+				align-items: center;
+			}
+			.btn-primary-view,
+			.btn-secondary-view,
+			.btn-demo {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				padding: 0.55rem 1.15rem;
+				background: transparent;
+				border: 1.5px solid var(--accent);
+				color: var(--accent);
+				border-radius: 20px;
+				font-weight: bold;
+				text-decoration: none;
+				font-size: 0.88rem;
+				transition: all 0.2s ease;
+				align-self: flex-start;
+			}
+			.btn-demo {
+				background: transparent;
+				border: none;
+				color: var(--accent);
+				font-weight: bold;
+			}
+			.btn-primary-view:hover,
+			.btn-secondary-view:hover,
+			.btn-demo:hover {
+				background: var(--accent);
+				color: white;
+				transform: translateY(-1px);
+			}
+			.btn-demo:hover {
+				filter: brightness(1.08);
+			}
+
+			@media (max-width: 768px) {
+				.featured-card {
+					grid-template-columns: 1fr;
+				}
+				.featured-image-wrapper {
+					height: 220px;
+					min-height: auto;
+				}
+				.featured-body {
+					padding: 1.25rem;
+				}
+				.secondary-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1 class="page-title">
+				<span class="lang-en">Work</span>
+				<span class="lang-nl">Werk</span>
+			</h1>
+
+			{/* FEATURED: Bachelor thesis */}
+			<section class="featured-section">
+				{featuredBP && (
+						<article class="featured-card">
+							{featuredBP.data.heroImage && (
+								<div class="featured-image-wrapper">
+									<a href={`/projects/${featuredBP.id}/`}>
+										<Image width={400} height={600} src={featuredBP.data.heroImage} alt={featuredBP.data.title} />
+									</a>
+								</div>
+							)}
+							<div class="featured-body">
+								<div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 0.5rem;">
+									<span class="lang-en">Bachelor Thesis · HOGENT</span>
+									<span class="lang-nl">Bachelorproef · HOGENT</span>
+								</div>
+								<h2 class="featured-title">
+									<a href={`/projects/${featuredBP.id}/`}>
+										<span class="lang-en">The Cognitive Assistant</span>
+										<span class="lang-nl">De Cognitieve Assistent</span>
+									</a>
+								</h2>
+								<div class="featured-subtitle">
+									<span class="lang-en">Local AI for Neurodivergent Students</span>
+									<span class="lang-nl">Lokale AI voor Neurodivergente Studenten</span>
+								</div>
+								<div class="featured-tagline">
+									<span class="lang-en">FastAPI · RAG · ChromaDB · Ollama · React · Python</span>
+									<span class="lang-nl">FastAPI · RAG · ChromaDB · Ollama · React · Python</span>
+								</div>
+								<p class="featured-desc">
+									<span class="lang-en">A privacy-first, 100% local AI assistant that transforms complex syllabi into manageable micro-steps for students with ADHD or high sensitivity. Zero cloud. Zero data leaving the device.</span>
+									<span class="lang-nl">Een privacy-first, 100% lokale AI-assistent die complexe syllabi omzet in behapbare micro-stappen voor studenten met ADHD of hoogsensitiviteit. Geen cloud. Geen data buiten het apparaat.</span>
+								</p>
+								<div class="featured-actions">
+									<a href={`/projects/${featuredBP.id}/`} class="btn-primary-view">
+										<span class="lang-en">View Project &rarr;</span>
+										<span class="lang-nl">Bekijk Project &rarr;</span>
+									</a>
+								</div>
+							</div>
+						</article>
+				)}
+			</section>
+
+			{/* SECONDARY: All other projects, including NODO */}
+			{secondaryProjects.length > 0 && (
+				<section>
+					<h3 class="secondary-heading">
+						<span class="lang-en">More Projects</span>
+						<span class="lang-nl">Meer Projecten</span>
+					</h3>
+					<div class="secondary-grid">
+						{secondaryProjects.map((post) => (
+							<article class="secondary-card">
+								{post.data.heroImage && (
+									<div class="secondary-image-wrapper">
+										<a href={`/projects/${post.id}/`}>
+											<Image width={500} height={250} src={post.data.heroImage} alt={post.data.title} />
+										</a>
+									</div>
+								)}
+								<div class="secondary-body">
+									<h4 class="secondary-title">
+										<a href={`/projects/${post.id}/`} style="color: inherit; text-decoration: none;">
+											{post.data.title}
+										</a>
+									</h4>
+									<div style="color: rgb(var(--gray)); font-size: 0.85rem; margin-bottom: 0.75rem;">
+										<FormattedDate date={post.data.pubDate} />
+									</div>
+									<p class="secondary-desc">
+										{post.data.description}
+									</p>
+									<div>
+										<a href={`/projects/${post.id}/`} class="btn-secondary-view">
+											<span class="lang-en">View Project &rarr;</span>
+											<span class="lang-nl">Bekijk Project &rarr;</span>
+										</a>
+									</div>
+								</div>
+							</article>
+						))}
+					</div>
+				</section>
+			)}
+		</main>
+		<Footer />
+	</body>
+</html>

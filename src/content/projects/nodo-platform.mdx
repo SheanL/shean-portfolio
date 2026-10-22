@@ -1,0 +1,170 @@
+---
+title: 'NODO'
+description: 'An accessible, inclusive social web and PWA application built with .NET 9, Blazor WebAssembly, SignalR real-time chat, voice notes, SOS emergency button, automated censorship and multi-tenant admin dashboard. Main contributions: auto-censorship, voice messages and support for the SignalR/WebSocket real-time communication layer.'
+pubDate: 'Jan 15 2025'
+heroImage: '../../assets/projects/nodo-platform/logo.png'
+hideHero: true
+---
+
+import ProjectCarousel from '../../components/ProjectCarousel.jsx';
+
+export const slides = [
+  // 1. User Profile
+  {
+    image: '/projects/nodo-platform/slide-1.png',
+    titleEn: '1. User Profile',
+    titleNl: '1. Gebruikersprofiel',
+    descEn: 'User profile overview showing date of birth, facility, bio and chosen hobbies — the social identity at the core of NODO.',
+    descNl: 'Profieloverzicht met geboortedatum, faciliteit, bio en gekozen hobby\'s — de sociale identiteit in het hart van NODO.'
+  },
+
+  // 2. Real-Time Chat via SignalR
+  {
+    image: '/projects/nodo-platform/slide-11.png',
+    titleEn: '2. Real-Time Chat via SignalR',
+    titleNl: '2. Real-Time Chat via SignalR',
+    descEn: 'Bi-directional real-time text messaging powered by SignalR WebSockets — one of my core technical contributions to the platform.',
+    descNl: 'Bidirectioneel real-time tekstchat via SignalR WebSockets — een van mijn centrale technische bijdragen aan het platform.'
+  },
+
+  // 3. Voice Notes
+  {
+    image: '/projects/nodo-platform/slide-12.png',
+    titleEn: '3. Voice Notes',
+    titleNl: '3. Spraakberichten',
+    descEn: 'Accessible audio voice message recording and playback — enabling users with typing difficulties to communicate verbally.',
+    descNl: 'Toegankelijke spraakberichtopname en -afspeling voor gebruikers die moeite hebben met typen.'
+  },
+
+  // 4. SOS Emergency Button
+  {
+    image: '/projects/nodo-platform/slide-21.png',
+    titleEn: '4. SOS Emergency Button',
+    titleNl: '4. SOS Noodknop',
+    descEn: 'One-touch red SOS button giving users instant access to call an educator, message a supervisor, or open the help page in a crisis.',
+    descNl: 'Één tik op de rode SOS-knop geeft onmiddellijke toegang tot bellen, berichten of hulp in een crisissituatie.'
+  },
+
+  // 5. Safety & Auto-Censorship
+  {
+    image: '/projects/nodo-platform/slide-19.png',
+    titleEn: '5. Real-Time Profanity Filtering',
+    titleNl: '5. Automatische Scheldwoordcensuur',
+    descEn: 'Automated content moderator replaces offensive vocabulary with *** instantly in all chat streams, with educator alert notifications.',
+    descNl: 'Geautomatiseerde contentfilter vervangt scheldwoorden direct door *** en stuurt meldingen naar begeleiders.'
+  },
+
+  // 6. Admin Dashboard (Shean's role)
+  {
+    image: '/projects/nodo-platform/slide-29.png',
+    titleEn: '6. Multi-Tenant Admin Dashboard',
+    titleNl: '6. Multi-Tenant Beheerdersportaal',
+    descEn: 'Rotating team responsibility — contributing to multi-tenant care facility management and user provisioning across the platform.',
+    descNl: 'Roterende teamverantwoordelijkheid — bijdragen aan multi-tenant faciliteitenbeheer en gebruikersprovisioning binnen het platform.'
+  },
+
+  // 7. Test Coverage
+  {
+    image: '/projects/nodo-platform/slide-33.png',
+    titleEn: '7. 82.88% Automated Test Coverage',
+    titleNl: '7. 82,88% Geautomatiseerde Testdekking',
+    descEn: 'Comprehensive test suite: Rise.Domain 91%, Rise.Shared 90.7%, Rise.Server 86.7%, Rise.Services 83.5% — total coverage 82.88%.',
+    descNl: 'Uitgebreide testsuite: Rise.Domain 91%, Rise.Shared 90,7%, Rise.Server 86,7%, Rise.Services 83,5% — totale dekking 82,88%.'
+  }
+];
+
+<div style={{ margin: '1rem 0 2.5rem 0' }}>
+  <ProjectCarousel client:load slides={slides} />
+</div>
+
+<div class="lang-en">
+
+## My Main Contributions
+
+**Full-Stack Developer**  
+My main contributions included auto-censorship, voice messages and support for the SignalR/WebSocket real-time communication layer. The system administrator role was a rotating team responsibility, where I also contributed to facility management and user provisioning.
+
+---
+
+## What Is NODO?
+
+**NODO** is an inclusive social platform and PWA developed for the *RISE Project (2024–2025)* at HOGENT — built for users with special accessibility needs, supervised by educators. Our team of 6 built a fully working product from scratch in one semester.
+
+### Tech Stack
+
+| Area | Technology |
+| :--- | :--- |
+| Framework | .NET 9, C# 13, Blazor WebAssembly |
+| Real-Time | SignalR WebSockets |
+| Database | Entity Framework Core 9 + MongoDB |
+| Cloud | Google Cloud Platform (GCP) |
+| Testing | 82.88% automated coverage |
+| Maps | OpenStreetMap geocoding |
+
+### Key Features
+
+- 💬 **Real-time chat** with SignalR WebSockets (text + voice notes)
+- 🆘 **SOS Emergency Button** — one tap to reach an educator
+- 🤖 **AI Chatbot** — auto-escalates to a human after 10 messages
+- 🚫 **Auto-Censorship** — profanity masked in real-time, educator alerted
+- 📴 **Offline PWA** — messages queue in IndexedDB and sync on reconnect
+- 🏢 **Multi-tenant Admin** — facility and user provisioning (shared team responsibility)
+- 🧩 **Accessible Games** — Memory, Cards, Quiz, Blocks with multi-player
+
+</div>
+
+<div class="lang-nl">
+
+## Mijn Belangrijkste Bijdragen
+
+**Full-Stack Developer**  
+Mijn belangrijkste bijdragen waren automatische censuur, spraakberichten en ondersteuning bij de SignalR/WebSocket-laag voor real-time communicatie. De rol van systeembeheerder was een roterende teamverantwoordelijkheid, waaraan ik ook bijdroeg via faciliteitenbeheer en gebruikersprovisioning.
+
+---
+
+## Wat Is NODO?
+
+**NODO** is een inclusief sociaal platform en PWA ontwikkeld voor het *RISE Project (2024–2025)* aan HOGENT — gebouwd voor gebruikers met toegankelijkheidsbehoeften, begeleid door educators. Ons team van 6 bouwde een volledig werkend product van nul in één semester.
+
+### Tech Stack
+
+| Gebied | Technologie |
+| :--- | :--- |
+| Framework | .NET 9, C# 13, Blazor WebAssembly |
+| Real-Time | SignalR WebSockets |
+| Database | Entity Framework Core 9 + MongoDB |
+| Cloud | Google Cloud Platform (GCP) |
+| Testen | 82,88% geautomatiseerde testdekking |
+| Kaarten | OpenStreetMap geocoding |
+
+### Kernfunctionaliteiten
+
+- 💬 **Real-time chat** via SignalR WebSockets (tekst + spraakberichten)
+- 🆘 **SOS Noodknop** — één tik om een begeleider te bereiken
+- 🤖 **AI Chatbot** — escaleert automatisch naar een mens na 10 berichten
+- 🚫 **Automatische Censuur** — scheldwoorden direct gemaskeerd, begeleider gewaarschuwd
+- 📴 **Offline PWA** — berichten gebufferd in IndexedDB, sync bij herstel
+- 🏢 **Multi-tenant Beheer** — faciliteiten en gebruikersprovisioning (gedeelde teamverantwoordelijkheid)
+- 🧩 **Toegankelijke Spelletjes** — Memory, Kaarten, Quiz, Blocks met multiplayer
+
+</div>
+
+---
+
+<div class="lang-en" style="margin: 2rem 0; padding: 1.5rem; border-left: 3px solid var(--accent); background: rgba(89,106,255,0.05); border-radius: 0 8px 8px 0;">
+
+**Want to know more about this project, its architecture, features, accessibility design, or my contribution?**  
+Send me a message — I'm happy to tell you more about how we built NODO.
+
+→ [Get in touch](/contact)
+
+</div>
+
+<div class="lang-nl" style="margin: 2rem 0; padding: 1.5rem; border-left: 3px solid var(--accent); background: rgba(89,106,255,0.05); border-radius: 0 8px 8px 0;">
+
+**Wil je meer weten over dit project, de architectuur, de functionaliteiten, het toegankelijkheidsontwerp of mijn bijdrage?**  
+Stuur me een bericht — ik vertel je graag meer over hoe we NODO hebben gebouwd.
+
+→ [Neem contact op](/contact)
+
+</div>
