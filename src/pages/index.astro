@@ -309,6 +309,12 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				justify-content: center;
 				margin: var(--space-md) 0 var(--space-lg) 0;
 			}
+			.tag-pills-wrapper {
+				position: relative;
+			}
+			.beyond-slider-arrow {
+				display: none;
+			}
 			.tag-pill {
 				background: transparent;
 				color: var(--gray);
@@ -401,10 +407,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			}
 			@media (max-width: 600px) {
 				.beyond-slider-hint {
-					display: block;
-					margin: calc(var(--space-xs) * -0.5) 0 var(--space-sm);
-					color: var(--gray);
-					font-size: var(--font-size-xs);
+					display: none;
 				}
 				.tag-pills {
 					flex-wrap: nowrap;
@@ -412,7 +415,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 					overflow-x: auto;
 					scroll-snap-type: x proximity;
 					scrollbar-width: none;
-					padding: 0.2rem 0.25rem 0.6rem;
+					padding: 0.2rem 2.25rem 0.6rem 0.25rem;
+					margin-right: -0.25rem;
 				}
 				.tag-pills::-webkit-scrollbar {
 					display: none;
@@ -421,23 +425,29 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 					flex: 0 0 auto;
 					scroll-snap-align: center;
 				}
+				.beyond-slider-arrow {
+					display: block;
+					position: absolute;
+					top: 50%;
+					right: 0;
+					z-index: 1;
+					transform: translateY(-50%);
+					padding: 0.2rem 0.35rem;
+					color: var(--accent);
+					background: rgb(var(--gray-light));
+					border-radius: 50%;
+					font-size: 1.15rem;
+					line-height: 1;
+					pointer-events: none;
+				}
 				.personal-cards-grid {
-					display: flex;
-					justify-content: flex-start;
-					gap: var(--space-sm);
-					overflow-x: auto;
-					scroll-snap-type: x mandatory;
-					scrollbar-width: none;
+					grid-template-columns: 1fr;
 					padding: 0.25rem 0.25rem 0.75rem;
 					margin: 0 -0.25rem;
 				}
-				.personal-cards-grid::-webkit-scrollbar {
-					display: none;
-				}
 				.personal-cards-grid.single-card .personal-card,
 				.personal-card {
-					flex: 0 0 calc(100% - 1rem);
-					width: calc(100% - 1rem);
+					width: 100%;
 					max-width: none;
 					scroll-snap-align: center;
 				}
@@ -566,7 +576,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 					<span class="lang-nl">Naast de Code</span>
 				</h2>
 
-				<div class="tag-pills" id="beyond-pills-container">
+				<div class="tag-pills-wrapper">
+					<div class="tag-pills" id="beyond-pills-container">
 					<button type="button" class="tag-pill active" data-category="fitness">
 						<span class="lang-en">🏋️ Fitness & Discipline</span>
 						<span class="lang-nl">🏋️ Fitness & Discipline</span>
@@ -587,11 +598,9 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 						<span class="lang-en">🌱 Eco & Sustainability</span>
 						<span class="lang-nl">🌱 Duurzaamheid & Milieu</span>
 					</button>
+					</div>
+					<span class="beyond-slider-arrow" aria-hidden="true">↔</span>
 				</div>
-				<p class="beyond-slider-hint">
-					<span class="lang-en">Swipe sideways or choose a category</span>
-					<span class="lang-nl">Veeg opzij of kies een categorie</span>
-				</p>
 
 				<div class="personal-cards-grid single-card" id="personal-cards-grid">
 					<div class="personal-card" data-category="fitness">
@@ -696,13 +705,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 					cards.forEach((card) => {
 						const isActive = card.dataset.category === cat;
-						const isMobile = window.matchMedia('(max-width: 600px)').matches;
-						card.style.display = isMobile || isActive ? 'block' : 'none';
-						card.style.opacity = isMobile || isActive ? '1' : '0';
-
-						if (isMobile && isActive) {
-							card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-						}
+						card.style.display = isActive ? 'block' : 'none';
+						card.style.opacity = isActive ? '1' : '0';
 					});
 				}
 
