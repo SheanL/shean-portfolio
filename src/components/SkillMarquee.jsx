@@ -52,7 +52,6 @@ export default function SkillMarquee() {
           animation: marquee 50s linear infinite;
         }
 
-        .marquee-container:hover .marquee-content,
         .marquee-container.has-selection .marquee-content {
           animation-play-state: paused;
         }

@@ -9,4 +9,4 @@ export const SITE_DESCRIPTION =
 export const CONTACT_EMAIL = 'sheanl@proton.me';
 
 // GitHub-icoon in header en footer.
-export const GITHUB_URL = 'https://github.com/SheanL/shean-portfolio';
+export const GITHUB_URL = 'https://github.com/SheanL/shean-portfolio#readme';
