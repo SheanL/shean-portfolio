@@ -188,6 +188,44 @@ export default function SkillMarquee() {
           filter: grayscale(0%) brightness(1.2) opacity(1) !important;
         }
 
+        @media (hover: none) {
+          .marquee-item:hover .marquee-item-label {
+            opacity: 0;
+          }
+
+          .marquee-item:hover img {
+            filter: grayscale(100%) opacity(0.65);
+            transform: none;
+          }
+
+          :global(.dark) .marquee-item:hover img {
+            filter: grayscale(100%) invert(0.45) brightness(1.4) opacity(0.75);
+          }
+
+          .marquee-item.invert-dark:hover img {
+            filter: brightness(0) invert(0.45) !important;
+            opacity: 0.85 !important;
+          }
+
+          :global(.dark) .marquee-item.invert-dark:hover img {
+            filter: brightness(0) invert(1) !important;
+            opacity: 0.75 !important;
+          }
+
+          .marquee-item.selected:hover .marquee-item-label {
+            opacity: 1;
+          }
+
+          .marquee-item.selected:hover img {
+            filter: grayscale(0%) opacity(1);
+            transform: scale(1.25);
+          }
+
+          :global(.dark) .marquee-item.selected.invert-dark:hover img {
+            filter: grayscale(0%) brightness(1.2) opacity(1) !important;
+          }
+        }
+
         @keyframes marquee {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
