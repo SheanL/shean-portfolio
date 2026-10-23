@@ -57,6 +57,12 @@ export default function SkillMarquee() {
           animation-play-state: paused;
         }
 
+        @media (hover: hover) and (pointer: fine) {
+          .marquee-container:hover .marquee-content {
+            animation-play-state: paused;
+          }
+        }
+
         .marquee-item {
           width: 80px;
           height: 80px;
