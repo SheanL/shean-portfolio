@@ -31,7 +31,8 @@ export default function ThemeToggle() {
         border: 0,
         cursor: 'pointer',
         fontSize: '0.8rem',
-        padding: '0.2rem 0',
+        padding: 0,
+        lineHeight: 0,
         color: 'inherit',
         marginLeft: 0,
         display: 'inline-flex',
@@ -52,7 +53,7 @@ export default function ThemeToggle() {
           justifyContent: 'space-between',
           width: '3.4rem',
           height: '1.55rem',
-          padding: '0.18rem',
+          padding: '0.15rem',
           borderRadius: '999px',
           background: 'rgba(128, 128, 128, 0.08)',
           border: '1px solid rgba(128, 128, 128, 0.45)',
@@ -95,14 +96,17 @@ export default function ThemeToggle() {
         <span
           style={{
             position: 'absolute',
-            top: '0.1rem',
-            left: '0.1rem',
+            top: '50%',
+            left: '0.15rem',
             width: '1.35rem',
             height: '1.35rem',
             borderRadius: '999px',
+            boxSizing: 'border-box',
             border: '1px solid rgba(124, 58, 237, 0.65)',
             background: 'rgba(124, 58, 237, 0.12)',
-            transform: theme === 'dark' ? 'translateX(0)' : 'translateX(1.85rem)',
+            transform: theme === 'dark'
+              ? 'translate(0, -50%)'
+              : 'translate(1.75rem, -50%)',
             transition: 'transform 0.25s ease',
           }}
         />
