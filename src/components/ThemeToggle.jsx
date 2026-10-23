@@ -27,10 +27,10 @@ export default function ThemeToggle() {
       onClick={toggleTheme}
       style={{
         background: 'transparent',
-        border: '1px solid transparent',
+        border: 0,
         cursor: 'pointer',
         fontSize: '0.8rem',
-        padding: '0.2rem 0.35rem',
+        padding: '0.2rem 0',
         color: 'inherit',
         marginLeft: 0,
         display: 'inline-flex',
@@ -49,11 +49,12 @@ export default function ThemeToggle() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          width: '2.7rem',
-          height: '1.25rem',
-          padding: '0.1rem',
+          width: '3.4rem',
+          height: '1.55rem',
+          padding: '0.18rem',
           borderRadius: '999px',
-          background: 'transparent',
+          background: 'rgba(128, 128, 128, 0.08)',
+          border: '1px solid rgba(128, 128, 128, 0.45)',
           boxSizing: 'border-box',
         }}
       >
@@ -61,36 +62,38 @@ export default function ThemeToggle() {
           aria-hidden="true"
           style={{
             zIndex: 1,
-            width: '0.72rem',
-            height: '0.72rem',
+            width: '0.9rem',
+            height: '0.9rem',
             borderRadius: '50%',
-            background: theme === 'light' ? '#7c3aed' : 'rgba(128, 128, 128, 0.75)',
-            opacity: 1,
+            background: theme === 'light'
+              ? 'radial-gradient(circle at 68% 30%, rgba(255,255,255,0.45) 0 7%, transparent 8%), radial-gradient(circle at 35% 68%, rgba(255,255,255,0.3) 0 9%, transparent 10%), #7c3aed'
+              : 'radial-gradient(circle at 68% 30%, rgba(255,255,255,0.35) 0 7%, transparent 8%), radial-gradient(circle at 35% 68%, rgba(255,255,255,0.2) 0 9%, transparent 10%), rgba(128, 128, 128, 0.85)',
           }}
         />
         <span
           aria-hidden="true"
           style={{
             zIndex: 1,
-            width: '0.72rem',
-            height: '0.72rem',
+            width: '0.9rem',
+            height: '0.9rem',
             borderRadius: '50%',
             background: theme === 'dark'
-              ? 'linear-gradient(to right, #7c3aed 50%, transparent 50%)'
-              : 'linear-gradient(to right, rgba(128, 128, 128, 0.75) 50%, transparent 50%)',
-            opacity: 1,
+              ? 'radial-gradient(circle at 35% 50%, #7c3aed 0 52%, transparent 54%)'
+              : 'radial-gradient(circle at 35% 50%, rgba(128, 128, 128, 0.85) 0 52%, transparent 54%)',
           }}
         />
         <span
           style={{
             position: 'absolute',
+            top: '0.1rem',
             left: '0.1rem',
-            width: '0.72rem',
-            height: '0.72rem',
-            borderRadius: '50%',
-            background: 'transparent',
-            transform: theme === 'dark' ? 'translateX(1.75rem)' : 'translateX(0)',
-            transition: 'transform 0.2s ease',
+            width: '1.35rem',
+            height: '1.35rem',
+            borderRadius: '999px',
+            border: '1px solid rgba(124, 58, 237, 0.65)',
+            background: 'rgba(124, 58, 237, 0.12)',
+            transform: theme === 'dark' ? 'translateX(1.85rem)' : 'translateX(0)',
+            transition: 'transform 0.25s ease',
           }}
         />
       </span>
