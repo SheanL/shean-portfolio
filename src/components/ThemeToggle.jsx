@@ -59,29 +59,37 @@ export default function ThemeToggle() {
         }}
       >
         <span
-          aria-hidden="true"
           style={{
             zIndex: 1,
-            width: '0.9rem',
-            height: '0.9rem',
-            borderRadius: '50%',
-            background: theme === 'light'
-              ? 'radial-gradient(circle at 68% 30%, rgba(255,255,255,0.45) 0 7%, transparent 8%), radial-gradient(circle at 35% 68%, rgba(255,255,255,0.3) 0 9%, transparent 10%), #7c3aed'
-              : 'radial-gradient(circle at 68% 30%, rgba(255,255,255,0.35) 0 7%, transparent 8%), radial-gradient(circle at 35% 68%, rgba(255,255,255,0.2) 0 9%, transparent 10%), rgba(128, 128, 128, 0.85)',
+            width: '1rem',
+            height: '1rem',
+            display: 'grid',
+            placeItems: 'center',
+            color: theme === 'dark' ? '#7c3aed' : 'rgba(128, 128, 128, 0.85)',
+            transition: 'color 0.25s ease',
           }}
-        />
+        >
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor">
+            <circle cx="12" cy="12" r="8.5" />
+            <circle cx="9" cy="9" r="1.2" fill="rgba(255,255,255,0.28)" />
+            <circle cx="15.5" cy="14.5" r="1.4" fill="rgba(255,255,255,0.22)" />
+          </svg>
+        </span>
         <span
-          aria-hidden="true"
           style={{
             zIndex: 1,
-            width: '0.9rem',
-            height: '0.9rem',
-            borderRadius: '50%',
-            background: theme === 'dark'
-              ? 'radial-gradient(circle at 35% 50%, #7c3aed 0 52%, transparent 54%)'
-              : 'radial-gradient(circle at 35% 50%, rgba(128, 128, 128, 0.85) 0 52%, transparent 54%)',
+            width: '1rem',
+            height: '1rem',
+            display: 'grid',
+            placeItems: 'center',
+            color: theme === 'light' ? '#7c3aed' : 'rgba(128, 128, 128, 0.85)',
+            transition: 'color 0.25s ease',
           }}
-        />
+        >
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path d="M15.7 3.3a8.8 8.8 0 1 0 5 16.2A9.2 9.2 0 0 1 15.7 3.3Z" />
+          </svg>
+        </span>
         <span
           style={{
             position: 'absolute',
@@ -92,7 +100,7 @@ export default function ThemeToggle() {
             borderRadius: '999px',
             border: '1px solid rgba(124, 58, 237, 0.65)',
             background: 'rgba(124, 58, 237, 0.12)',
-            transform: theme === 'dark' ? 'translateX(1.85rem)' : 'translateX(0)',
+            transform: theme === 'dark' ? 'translateX(0)' : 'translateX(1.85rem)',
             transition: 'transform 0.25s ease',
           }}
         />
