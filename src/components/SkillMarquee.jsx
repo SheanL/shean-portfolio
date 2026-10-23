@@ -24,7 +24,14 @@ export default function SkillMarquee() {
   const marqueeItems = [...skills, ...skills];
 
   return (
-    <div className="marquee-container">
+    <div
+      className={`marquee-container ${selectedSkill !== null ? 'has-selection' : ''}`}
+      onClick={(event) => {
+        if (!event.target.closest('.marquee-item')) {
+          setSelectedSkill(null);
+        }
+      }}
+    >
       <style>{`
         .marquee-container {
           width: 100%;
@@ -45,7 +52,8 @@ export default function SkillMarquee() {
           animation: marquee 50s linear infinite;
         }
 
-        .marquee-container:hover .marquee-content {
+        .marquee-container:hover .marquee-content,
+        .marquee-container.has-selection .marquee-content {
           animation-play-state: paused;
         }
 
@@ -62,6 +70,10 @@ export default function SkillMarquee() {
           border: 0;
           padding: 0;
           background: transparent;
+          color: inherit;
+          font: inherit;
+          -webkit-tap-highlight-color: transparent;
+          appearance: none;
         }
 
         .marquee-item img {
@@ -97,6 +109,27 @@ export default function SkillMarquee() {
         .marquee-item:focus-visible .marquee-item-label,
         .marquee-item.selected .marquee-item-label {
           opacity: 1;
+        }
+
+        .marquee-item:focus {
+          outline: none;
+        }
+
+        .marquee-item.selected {
+          transform: translateY(-2px);
+        }
+
+        .marquee-item.selected img {
+          filter: grayscale(0%) opacity(1);
+          transform: scale(1.25);
+        }
+
+        .marquee-item-label {
+          color: rgb(var(--black));
+        }
+
+        :global(.dark) .marquee-item-label {
+          color: #f8fafc;
         }
 
         /* Dark Mode: rust = helder lichtgrijs/zilver; hover = volledige originele merk-kleuren */
@@ -139,6 +172,15 @@ export default function SkillMarquee() {
         :global(.dark) .marquee-item.is-monochrome:hover img {
           filter: brightness(0) invert(1) !important;
           opacity: 1 !important;
+        }
+
+        .marquee-item.selected.invert-dark img {
+          filter: grayscale(0%) opacity(1) !important;
+          transform: scale(1.25);
+        }
+
+        :global(.dark) .marquee-item.selected.invert-dark img {
+          filter: grayscale(0%) brightness(1.2) opacity(1) !important;
         }
 
         @keyframes marquee {
