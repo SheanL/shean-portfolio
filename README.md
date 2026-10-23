@@ -1,63 +1,49 @@
-# Astro Starter Kit: Blog
+# Shean Looghe — Portfolio
 
-```sh
-npm create astro@latest -- --template blog
+Personal portfolio website for Shean Looghe, an Applied Computer Science student at HOGENT focused on full-stack software development.
+
+## About me
+
+I enjoy building clear, practical and reliable software. My main interests are full-stack development, local AI experimentation and creating interfaces that feel calm, accessible and easy to use.
+
+## Live website
+
+https://www.sheanlooghe.me
+
+## Highlights
+
+- Full-stack software development
+- A bachelor thesis about a local AI Cognitive Assistant
+- Responsive and accessible interface design
+- Dark mode and bilingual content
+- Personal projects with a focus on practical user value
+
+## Featured work
+
+- **The Cognitive Assistant** — a local AI assistant that helps students work with course material.
+- **NODO** — an inclusive assistive social platform built as a collaborative full-stack project.
+- **Portfolio website** — a personal, minimal and responsive website designed to present my work and interests.
+
+## Development
+
+Install the dependencies:
+
+```bash
+npm install
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Start the development server:
 
-Features:
-
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and Open Graph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-├── public/
-├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+```bash
+npm run dev
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Build the production site:
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```bash
+npm run build
+```
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+## Contact
 
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+Learn more about my projects and get in touch through my [portfolio website](https://www.sheanlooghe.me).
