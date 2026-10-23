@@ -37,7 +37,7 @@ export default function SkillMarquee() {
           width: 100%;
           overflow: hidden;
           padding: 2rem 0;
-          background: rgba(0, 0, 0, 0.02);
+          background: transparent;
           border-radius: 12px;
           margin: 2rem 0;
           position: relative;
@@ -54,20 +54,11 @@ export default function SkillMarquee() {
         }
         .marquee-container::before {
           left: 0;
-          background: linear-gradient(to right, rgba(250, 250, 250, 0.96), transparent);
+          background: linear-gradient(to right, var(--bg-color), transparent);
         }
         .marquee-container::after {
           right: 0;
-          background: linear-gradient(to left, rgba(250, 250, 250, 0.96), transparent);
-        }
-        :global(.dark) .marquee-container {
-          background: rgba(255, 255, 255, 0.02);
-        }
-        :global(.dark) .marquee-container::before {
-          background: linear-gradient(to right, rgba(13, 17, 23, 0.96), transparent);
-        }
-        :global(.dark) .marquee-container::after {
-          background: linear-gradient(to left, rgba(13, 17, 23, 0.96), transparent);
+          background: linear-gradient(to left, var(--bg-color), transparent);
         }
         
         .marquee-content {
@@ -157,16 +148,16 @@ export default function SkillMarquee() {
           color: rgb(var(--black));
         }
 
-        :global(.dark) .marquee-item-label {
+        .dark .marquee-item-label {
           color: #f8fafc;
         }
 
         /* Dark Mode: rust = helder lichtgrijs/zilver; hover = volledige originele merk-kleuren */
-        :global(.dark) .marquee-item img {
+        .dark .marquee-item img {
           filter: grayscale(100%) invert(0.45) brightness(1.4) opacity(0.75);
         }
 
-        :global(.dark) .marquee-item:hover img {
+        .dark .marquee-item:hover img {
           filter: grayscale(0%) invert(0) brightness(1.1) opacity(1);
           transform: scale(1.25);
         }
@@ -183,12 +174,12 @@ export default function SkillMarquee() {
           transform: scale(1.25);
         }
 
-        :global(.dark) .marquee-item.invert-dark img {
+        .dark .marquee-item.invert-dark img {
           filter: brightness(0) invert(1) !important;
           opacity: 0.75 !important;
         }
 
-        :global(.dark) .marquee-item.invert-dark:hover img {
+        .dark .marquee-item.invert-dark:hover img {
           filter: grayscale(0%) brightness(1.2) opacity(1) !important;
           transform: scale(1.25);
         }
@@ -198,7 +189,7 @@ export default function SkillMarquee() {
           filter: brightness(0) opacity(1) !important;
         }
 
-        :global(.dark) .marquee-item.is-monochrome:hover img {
+        .dark .marquee-item.is-monochrome:hover img {
           filter: brightness(0) invert(1) !important;
           opacity: 1 !important;
         }
@@ -208,7 +199,7 @@ export default function SkillMarquee() {
           transform: scale(1.25);
         }
 
-        :global(.dark) .marquee-item.selected.invert-dark img {
+        .dark .marquee-item.selected.invert-dark img {
           filter: grayscale(0%) brightness(1.2) opacity(1) !important;
         }
 
@@ -222,7 +213,7 @@ export default function SkillMarquee() {
             transform: none;
           }
 
-          :global(.dark) .marquee-item:hover img {
+          .dark .marquee-item:hover img {
             filter: grayscale(100%) invert(0.45) brightness(1.4) opacity(0.75);
           }
 
@@ -231,7 +222,7 @@ export default function SkillMarquee() {
             opacity: 0.85 !important;
           }
 
-          :global(.dark) .marquee-item.invert-dark:hover img {
+          .dark .marquee-item.invert-dark:hover img {
             filter: brightness(0) invert(1) !important;
             opacity: 0.75 !important;
           }
@@ -245,7 +236,7 @@ export default function SkillMarquee() {
             transform: scale(1.25);
           }
 
-          :global(.dark) .marquee-item.selected.invert-dark:hover img {
+          .dark .marquee-item.selected.invert-dark:hover img {
             filter: grayscale(0%) brightness(1.2) opacity(1) !important;
           }
         }
