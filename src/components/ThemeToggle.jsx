@@ -84,6 +84,7 @@ export default function ThemeToggle() {
             placeItems: 'center',
             color: theme === 'light' ? '#7c3aed' : 'rgba(128, 128, 128, 0.85)',
             transition: 'color 0.25s ease',
+            transform: 'translateX(-0.1rem)',
           }}
         >
           <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
