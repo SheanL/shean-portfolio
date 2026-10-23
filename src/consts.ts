@@ -9,5 +9,4 @@ export const SITE_DESCRIPTION =
 export const CONTACT_EMAIL = 'sheanl@proton.me';
 
 // GitHub-icoon in header en footer.
-// Vervang door je school-GitHub-URL als daar al je projecten staan.
-export const GITHUB_URL = 'https://github.com/SheanLooghe';
+export const GITHUB_URL = 'https://github.com/SheanL/shean-portfolio';
