@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState(() =>
+    typeof document !== 'undefined' && document.documentElement.classList.contains('dark')
+      ? 'dark'
+      : 'light'
+  );
 
   useEffect(() => {
-    // Check huidig thema na mounten op client
-    if (document.documentElement.classList.contains('dark')) {
-      setTheme('dark');
-    }
+    setTheme(document.documentElement.classList.contains('dark') ? 'dark' : 'light');
   }, []);
 
   const toggleTheme = () => {
