@@ -75,6 +75,34 @@ export default function ContactForm() {
       : 'Hi Shean, I would like to get in touch regarding an opportunity...',
   };
 
+  const validationMessages = {
+    en: {
+      required: 'Please fill out this field.',
+      email: 'Please enter a valid email address.',
+    },
+    nl: {
+      required: 'Vul dit veld in.',
+      email: 'Vul een geldig e-mailadres in.',
+    },
+  };
+
+  const handleInvalid = (event) => {
+    const input = event.currentTarget;
+    const messages = validationMessages[lang];
+
+    input.setCustomValidity(
+      input.validity.valueMissing
+        ? messages.required
+        : input.validity.typeMismatch
+          ? messages.email
+          : ''
+    );
+  };
+
+  const clearValidationMessage = (event) => {
+    event.currentTarget.setCustomValidity('');
+  };
+
   return (
     <div className="contact-form-wrapper">
       <form className="contact-form" onSubmit={handleSubmit}>
@@ -91,6 +119,8 @@ export default function ContactForm() {
               required
               autoComplete="name"
               placeholder={placeholders.name}
+              onInvalid={handleInvalid}
+              onInput={clearValidationMessage}
             />
           </div>
           <div className="contact-field">
@@ -105,6 +135,8 @@ export default function ContactForm() {
               required
               autoComplete="email"
               placeholder={placeholders.email}
+              onInvalid={handleInvalid}
+              onInput={clearValidationMessage}
             />
           </div>
         </div>
@@ -120,6 +152,8 @@ export default function ContactForm() {
             name="subject"
             required
             placeholder={placeholders.subject}
+            onInvalid={handleInvalid}
+            onInput={clearValidationMessage}
           />
         </div>
 
@@ -134,6 +168,8 @@ export default function ContactForm() {
             rows="8"
             required
             placeholder={placeholders.message}
+            onInvalid={handleInvalid}
+            onInput={clearValidationMessage}
           />
         </div>
 
