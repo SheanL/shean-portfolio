@@ -26,8 +26,8 @@ export default function ThemeToggle() {
     <button
       onClick={toggleTheme}
       style={{
-        background: 'rgba(128, 128, 128, 0.08)',
-        border: '1px solid rgba(128, 128, 128, 0.35)',
+        background: 'transparent',
+        border: '1px solid transparent',
         cursor: 'pointer',
         fontSize: '0.8rem',
         padding: '0.2rem 0.35rem',
@@ -49,11 +49,11 @@ export default function ThemeToggle() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          width: '2.35rem',
-          height: '1.05rem',
-          padding: '0.12rem',
+          width: '2.7rem',
+          height: '1.25rem',
+          padding: '0.1rem',
           borderRadius: '999px',
-          background: 'rgba(128, 128, 128, 0.35)',
+          background: 'transparent',
           boxSizing: 'border-box',
         }}
       >
@@ -61,33 +61,35 @@ export default function ThemeToggle() {
           aria-hidden="true"
           style={{
             zIndex: 1,
-            width: '0.58rem',
-            height: '0.58rem',
+            width: '0.72rem',
+            height: '0.72rem',
             borderRadius: '50%',
-            background: 'rgba(90, 90, 90, 0.85)',
-            opacity: theme === 'light' ? 1 : 0.55,
+            background: theme === 'light' ? '#7c3aed' : 'rgba(128, 128, 128, 0.75)',
+            opacity: 1,
           }}
         />
         <span
           aria-hidden="true"
           style={{
             zIndex: 1,
-            width: '0.58rem',
-            height: '0.58rem',
+            width: '0.72rem',
+            height: '0.72rem',
             borderRadius: '50%',
-            background: 'linear-gradient(to right, rgba(90, 90, 90, 0.85) 50%, transparent 50%)',
-            opacity: theme === 'dark' ? 1 : 0.55,
+            background: theme === 'dark'
+              ? 'linear-gradient(to right, #7c3aed 50%, transparent 50%)'
+              : 'linear-gradient(to right, rgba(128, 128, 128, 0.75) 50%, transparent 50%)',
+            opacity: 1,
           }}
         />
         <span
           style={{
             position: 'absolute',
-            left: '0.12rem',
-            width: '0.6rem',
-            height: '0.6rem',
+            left: '0.1rem',
+            width: '0.72rem',
+            height: '0.72rem',
             borderRadius: '50%',
-            background: 'rgba(255, 255, 255, 0.9)',
-            transform: theme === 'dark' ? 'translateX(1.28rem)' : 'translateX(0)',
+            background: 'transparent',
+            transform: theme === 'dark' ? 'translateX(1.75rem)' : 'translateX(0)',
             transition: 'transform 0.2s ease',
           }}
         />
