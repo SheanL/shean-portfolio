@@ -26,8 +26,8 @@ export default function ThemeToggle() {
     <button
       onClick={toggleTheme}
       style={{
-        background: 'rgba(125, 90, 180, 0.08)',
-        border: '1px solid rgba(125, 90, 180, 0.35)',
+        background: 'rgba(128, 128, 128, 0.08)',
+        border: '1px solid rgba(128, 128, 128, 0.35)',
         cursor: 'pointer',
         fontSize: '0.8rem',
         padding: '0.2rem 0.35rem',
@@ -53,7 +53,7 @@ export default function ThemeToggle() {
           height: '1.05rem',
           padding: '0.12rem',
           borderRadius: '999px',
-          background: 'rgba(125, 90, 180, 0.35)',
+          background: 'rgba(128, 128, 128, 0.35)',
           boxSizing: 'border-box',
         }}
       >
@@ -61,26 +61,24 @@ export default function ThemeToggle() {
           aria-hidden="true"
           style={{
             zIndex: 1,
-            color: '#7c3aed',
-            fontSize: '0.62rem',
-            lineHeight: 1,
+            width: '0.58rem',
+            height: '0.58rem',
+            borderRadius: '50%',
+            background: 'rgba(90, 90, 90, 0.85)',
             opacity: theme === 'light' ? 1 : 0.55,
           }}
-        >
-          ●
-        </span>
+        />
         <span
           aria-hidden="true"
           style={{
             zIndex: 1,
-            color: '#7c3aed',
-            fontSize: '0.62rem',
-            lineHeight: 1,
+            width: '0.58rem',
+            height: '0.58rem',
+            borderRadius: '50%',
+            background: 'linear-gradient(to right, rgba(90, 90, 90, 0.85) 50%, transparent 50%)',
             opacity: theme === 'dark' ? 1 : 0.55,
           }}
-        >
-          ◐
-        </span>
+        />
         <span
           style={{
             position: 'absolute',
