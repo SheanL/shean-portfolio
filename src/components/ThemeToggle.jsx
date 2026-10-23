@@ -37,20 +37,20 @@ export default function ThemeToggle() {
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: '20px',
-        gap: '0.3rem',
         transition: 'all 0.2s ease',
       }}
       aria-label="Toggle Dark Mode"
       title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
     >
-      <span aria-hidden="true" style={{ opacity: theme === 'light' ? 0.45 : 1 }}>☾</span>
       <span
         aria-hidden="true"
         style={{
+          position: 'relative',
           display: 'flex',
           alignItems: 'center',
-          width: '1.55rem',
-          height: '0.85rem',
+          justifyContent: 'space-between',
+          width: '2.35rem',
+          height: '1.05rem',
           padding: '0.12rem',
           borderRadius: '999px',
           background: 'rgba(125, 90, 180, 0.35)',
@@ -58,17 +58,42 @@ export default function ThemeToggle() {
         }}
       >
         <span
+          aria-hidden="true"
           style={{
+            zIndex: 1,
+            color: '#7c3aed',
+            fontSize: '0.62rem',
+            lineHeight: 1,
+            opacity: theme === 'light' ? 1 : 0.55,
+          }}
+        >
+          ●
+        </span>
+        <span
+          aria-hidden="true"
+          style={{
+            zIndex: 1,
+            color: '#7c3aed',
+            fontSize: '0.62rem',
+            lineHeight: 1,
+            opacity: theme === 'dark' ? 1 : 0.55,
+          }}
+        >
+          ◐
+        </span>
+        <span
+          style={{
+            position: 'absolute',
+            left: '0.12rem',
             width: '0.6rem',
             height: '0.6rem',
             borderRadius: '50%',
-            background: '#7c3aed',
-            transform: theme === 'dark' ? 'translateX(0.7rem)' : 'translateX(0)',
+            background: 'rgba(255, 255, 255, 0.9)',
+            transform: theme === 'dark' ? 'translateX(1.28rem)' : 'translateX(0)',
             transition: 'transform 0.2s ease',
           }}
         />
       </span>
-      <span aria-hidden="true" style={{ opacity: theme === 'dark' ? 0.45 : 1 }}>◐</span>
     </button>
   );
 }
