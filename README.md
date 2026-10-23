@@ -21,6 +21,17 @@ I enjoy building clear, practical and reliable software. My main interests are f
 - Dark mode and bilingual content
 - Personal projects with a focus on practical user value
 
+## Hard skills
+
+| Area | Technologies |
+|---|---|
+| Languages | C#, Java, Python, JavaScript, TypeScript |
+| Frontend | React, Astro, HTML, CSS |
+| Backend | .NET, Spring Boot, Node.js |
+| Databases | SQL, MySQL, MongoDB |
+| Tools | Git, GitHub, Docker |
+| Testing | Cypress, JUnit, Mockito |
+
 ## Featured work
 
 - **The Cognitive Assistant** — a local AI assistant that helps students work with course material.
