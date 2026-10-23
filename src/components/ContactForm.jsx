@@ -174,6 +174,10 @@ export default function ContactForm() {
         </div>
 
         <div className="contact-footer-bar">
+          <p className="contact-note">
+            <span className="lang-en">Your data is not shared with third parties.</span>
+            <span className="lang-nl">Je gegevens worden niet gedeeld met derden.</span>
+          </p>
           <button
             type="submit"
             className={`contact-submit ${status === 'loading' ? 'loading' : ''}`}

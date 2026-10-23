@@ -100,6 +100,13 @@ html.dark .contact-field textarea:focus {
 	margin-top: 0.5rem;
 }
 
+.contact-note {
+	margin: 0;
+	font-size: clamp(0.78rem, 2vw, 0.88rem);
+	color: rgb(var(--gray));
+	text-align: center;
+}
+
 .contact-submit {
 	width: 100%;
 	padding: clamp(0.9rem, 2.2vw, 1.1rem);

@@ -42,8 +42,32 @@ export default function SkillMarquee() {
           margin: 2rem 0;
           position: relative;
         }
+        .marquee-container::before,
+        .marquee-container::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 4rem;
+          z-index: 2;
+          pointer-events: none;
+        }
+        .marquee-container::before {
+          left: 0;
+          background: linear-gradient(to right, rgba(250, 250, 250, 0.96), transparent);
+        }
+        .marquee-container::after {
+          right: 0;
+          background: linear-gradient(to left, rgba(250, 250, 250, 0.96), transparent);
+        }
         :global(.dark) .marquee-container {
           background: rgba(255, 255, 255, 0.02);
+        }
+        :global(.dark) .marquee-container::before {
+          background: linear-gradient(to right, rgba(13, 17, 23, 0.96), transparent);
+        }
+        :global(.dark) .marquee-container::after {
+          background: linear-gradient(to left, rgba(13, 17, 23, 0.96), transparent);
         }
         
         .marquee-content {
