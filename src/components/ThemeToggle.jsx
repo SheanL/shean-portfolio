@@ -62,12 +62,16 @@ export default function ThemeToggle() {
       >
         <span
           style={{
+            position: 'absolute',
+            top: '50%',
+            left: '0.325rem',
             zIndex: 1,
             width: '1rem',
             height: '1rem',
             display: 'grid',
             placeItems: 'center',
             color: theme === 'dark' ? '#7c3aed' : 'rgba(128, 128, 128, 0.85)',
+            transform: 'translateY(-50%)',
             transition: 'color 0.25s ease',
           }}
         >
@@ -79,14 +83,17 @@ export default function ThemeToggle() {
         </span>
         <span
           style={{
+            position: 'absolute',
+            top: '50%',
+            right: '0.325rem',
             zIndex: 1,
             width: '1rem',
             height: '1rem',
             display: 'grid',
             placeItems: 'center',
             color: theme === 'light' ? '#7c3aed' : 'rgba(128, 128, 128, 0.85)',
+            transform: 'translateY(-50%)',
             transition: 'color 0.25s ease',
-            transform: 'translateX(-0.1rem)',
           }}
         >
           <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
