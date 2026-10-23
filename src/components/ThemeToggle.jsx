@@ -27,17 +27,18 @@ export default function ThemeToggle() {
       onClick={toggleTheme}
       style={{
         background: 'none',
-        border: 'none',
+        border: '1px solid rgba(120, 120, 120, 0.3)',
         cursor: 'pointer',
-        fontSize: '1.2rem',
-        padding: '0.5rem',
+        fontSize: '0.85rem',
+        padding: '0.25rem 0.65rem',
         color: 'inherit',
-        marginLeft: '1rem',
-        display: 'flex',
+        marginLeft: 0,
+        display: 'inline-flex',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: '50%',
-        backgroundColor: theme === 'dark' ? '#333' : '#f0f0f0'
+        borderRadius: '20px',
+        gap: '4px',
+        transition: 'all 0.2s ease',
       }}
       aria-label="Toggle Dark Mode"
     >

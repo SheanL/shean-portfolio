@@ -174,11 +174,6 @@ export default function ContactForm() {
         </div>
 
         <div className="contact-footer-bar">
-          <p className="contact-note">
-            <span className="lang-en">🔒 Your data is processed securely and directly.</span>
-            <span className="lang-nl">🔒 Je gegevens worden veilig en rechtstreeks verwerkt.</span>
-          </p>
-
           <button
             type="submit"
             className={`contact-submit ${status === 'loading' ? 'loading' : ''}`}
