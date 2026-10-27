@@ -23,6 +23,10 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			.hero-content {
 				max-width: 800px;
 				animation: fadeIn 1s ease-out forwards;
+				visibility: hidden;
+			}
+			.hero-content.profile-loaded {
+				visibility: visible;
 			}
 			.hero-title {
 				font-size: var(--font-size-3xl);
@@ -468,6 +472,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 							class="profile-avatar"
 							loading="eager"
 							fetchpriority="high"
+							onload="this.closest('.hero-content').classList.add('profile-loaded')"
 						/>
 					</div>
 					<div class="hero-status-row">
