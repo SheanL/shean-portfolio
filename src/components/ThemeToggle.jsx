@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 export default function ThemeToggle() {
-    // Initialiseer state veilig zonder SSR mismatch
     const [theme, setTheme] = useState('light');
 
     useEffect(() => {
@@ -66,7 +65,7 @@ export default function ThemeToggle() {
                     boxSizing: 'border-box',
                 }}
             >
-                {/* LINKERKANT: Dark Mode (Maan-icoon) */}
+                {/* LINKS: Maan (Dark Mode) */}
                 <span
                     style={{
                         position: 'absolute',
@@ -87,7 +86,7 @@ export default function ThemeToggle() {
                     </svg>
                 </span>
 
-                {/* RECHTERKANT: Light Mode (Zon-icoon) */}
+                {/* RECHTS: Zon (Light Mode) */}
                 <span
                     style={{
                         position: 'absolute',
@@ -110,7 +109,7 @@ export default function ThemeToggle() {
                     </svg>
                 </span>
 
-                {/* BEWEGENDE SLIDER-PILL */}
+                {/* SLIDER-PILL */}
                 <span
                     style={{
                         position: 'absolute',
@@ -124,7 +123,7 @@ export default function ThemeToggle() {
                         background: 'rgba(124, 58, 237, 0.12)',
                         transform: theme === 'dark'
                             ? 'translate(0, -50%)'        // Links in Dark Mode
-                            : 'translate(1.75rem, -50%)', // Rechts in Light Mode
+                            : 'translate(1.75rem, -50%)', // Rechts in Light Mode (Beginstand)
                         transition: 'transform 0.25s ease',
                     }}
                 />
